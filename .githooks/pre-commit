@@ -23,7 +23,7 @@ file_list="${file_list#,}"
 
 # run linter and print warnings
 echo "$file_list" >"$FILE_LIST_NAME"
-"${PMD_CMD}" -filelist "${current_dir}/${FILE_LIST_NAME}" -R "${PMD_RULES}" -no-cache
+"${PMD_CMD}" --file-list "${current_dir}/${FILE_LIST_NAME}" --rulesets "${PMD_RULES}" --no-cache
 result="$?"
 rm "$FILE_LIST_NAME"
 
