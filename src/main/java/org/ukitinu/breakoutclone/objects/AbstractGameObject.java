@@ -3,14 +3,12 @@ package org.ukitinu.breakoutclone.objects;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.ukitinu.breakoutclone.ObjectType;
 
 import java.awt.Rectangle;
 
 @Getter
 @Setter
-@ToString
 public abstract class AbstractGameObject implements GameObject {
 
     protected int x;

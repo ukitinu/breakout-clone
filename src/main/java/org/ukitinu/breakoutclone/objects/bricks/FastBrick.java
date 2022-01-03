@@ -3,13 +3,15 @@ package org.ukitinu.breakoutclone.objects.bricks;
 import java.awt.*;
 
 public class FastBrick extends SpeedBrick {
+    private static final double SPEED_VAR = 0.7;
+
     public FastBrick(int x, int y) {
         super(x, y);
     }
 
     @Override
-    public int getSpeedDelta() {
-        return 1;
+    public double getSpeedDelta() {
+        return SPEED_VAR;
     }
 
     @Override

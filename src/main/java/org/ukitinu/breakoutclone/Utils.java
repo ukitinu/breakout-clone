@@ -8,6 +8,10 @@ public final class Utils {
         return Math.max(min, Math.min(val, max));
     }
 
+    public static double minMax(double min, double val, double max) {
+        return Math.max(min, Math.min(val, max));
+    }
+
     public static <T> void setRange(T[] array, T element, int from, int to) {
         if (from < 0 || to > array.length)
             throw new ArrayIndexOutOfBoundsException(String.format("size %s; from %s; to %s", array.length, from, to));

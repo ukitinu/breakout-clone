@@ -1,13 +1,9 @@
 ORA
-Correzione in favore giocatore di rimbalzo con Paddle (va sotto solo se già interamente sotto)
-Controllare rimbalzo con FakePaddle
 WobblyBrick
 
 DOPO
-Gestire caso FakePaddle multiple
 Livelli con difficoltà
 Menù
-magari Paddle a forma di tronco di piramide?
 
 PENSIERI
 Bonus cadenti

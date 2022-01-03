@@ -25,7 +25,7 @@ public final class Ball extends MovingGameObject {
     @Override
     public void tick() {
         checkPaddleCollision();
-        checkFakePaddleCollision(); //TODO controllare bounding box fake paddle e rendere più simile a quella per paddle
+        checkFakePaddleCollision();
         checkBrickCollision();
 
         if (y >= Game.HEIGHT - height * 3) {
@@ -48,7 +48,7 @@ public final class Ball extends MovingGameObject {
         g.fillOval(x, y, width, height);
     }
 
-    public void changeAbsoluteSpeedBy(int val) {
+    public void changeAbsoluteSpeedBy(double val) {
         velY = velY > 0 ? Utils.minMax(MIN_SPEED, velY + val, MAX_SPEED) : Utils.minMax(-MAX_SPEED, velY - val, -MIN_SPEED);
     }
 

@@ -11,7 +11,7 @@ public abstract class SpeedBrick extends AbstractBrick {
         super(x, y);
     }
 
-    protected abstract int getSpeedDelta();
+    protected abstract double getSpeedDelta();
 
     @Override
     public void onHit() {

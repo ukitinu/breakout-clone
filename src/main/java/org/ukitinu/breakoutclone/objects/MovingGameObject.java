@@ -8,8 +8,8 @@ import org.ukitinu.breakoutclone.ObjectType;
 @Setter
 public abstract class MovingGameObject extends AbstractGameObject {
 
-    protected int velX;
-    protected int velY;
+    protected double velX;
+    protected double velY;
 
     MovingGameObject(int x, int y, int width, int height, ObjectType type) {
         super(x, y, width, height, type);

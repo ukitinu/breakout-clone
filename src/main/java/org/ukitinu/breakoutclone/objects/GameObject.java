@@ -6,5 +6,13 @@ import org.ukitinu.breakoutclone.collision.HasCollision;
 
 public interface GameObject extends Drawable, HasCollision {
 
+    int getX();
+
+    int getY();
+
+    int getWidth();
+
+    int getHeight();
+
     ObjectType getObjectType();
 }

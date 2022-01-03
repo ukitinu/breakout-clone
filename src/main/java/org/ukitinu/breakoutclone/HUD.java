@@ -38,6 +38,7 @@ public enum HUD implements Drawable {
         g.fillRect(0, 0, Game.WIDTH, HEIGHT);
     }
 
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     private void drawLives(Graphics g) {
         g.setColor(Color.GRAY);
         g.fillRect(Game.WIDTH - HUD_WIDTH * MAX_LIVES - ADJUSTMENT, 0, HUD_WIDTH * MAX_LIVES, HUD_HEIGHT);

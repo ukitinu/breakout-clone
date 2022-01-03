@@ -30,20 +30,24 @@ public class Game extends Canvas implements Runnable {
         Spawner.INSTANCE.placePaddle();
     }
 
-    public synchronized void start() {
-        thread = new Thread(this);
-        thread.start();
-        running = true;
-        this.requestFocus();
+    public void start() {
+        synchronized (this) {
+            thread = new Thread(this);
+            thread.start();
+            running = true;
+            this.requestFocus();
+        }
     }
 
-    public synchronized void stop() {
-        try {
-            thread.join();
-            running = false;
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            throw new IllegalThreadStateException("Game::stop interrupted");
+    public void stop() {
+        synchronized (this) {
+            try {
+                thread.join();
+                running = false;
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new IllegalThreadStateException("Game::stop interrupted");
+            }
         }
     }
 

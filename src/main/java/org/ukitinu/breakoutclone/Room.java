@@ -18,6 +18,7 @@ public enum Room {
     private final Map<ObjectType, LinkedList<GameObject>> toAdd = new HashMap<>();
     private final Map<ObjectType, LinkedList<GameObject>> toRemove = new HashMap<>();
 
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     Room() {
         for (ObjectType type : ObjectType.values()) {
             objects.put(type, new LinkedList<>());
