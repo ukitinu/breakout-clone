@@ -1,0 +1,28 @@
+*.class
+*.log
+*.jar
+*.zip
+*.tar.gz
+*.gz
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+### Maven template
+target/
+
+# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
+!/.mvn/wrapper/maven-wrapper.jar
+
+.classpath
+.project
+.settings/
+.idea/
+
+*.iml
+*.ipr
+# File-based project format
+*.iws
+
+.pre_commit_file_list
+.githooks/pmd-bin-6.34.0/
