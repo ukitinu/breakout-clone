@@ -9,7 +9,7 @@ import org.ukitinu.breakoutclone.collision.HasCollision;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public final class Paddle extends MovingGameObject implements HasKeyInput {
+public final class Paddle extends MovingGameObject {
     private static final int SIDE_WIDTH = 64 / 8;
     public static final int WIDTH = SIDE_WIDTH * 8;
     public static final int HEIGHT = 6;
@@ -44,7 +44,6 @@ public final class Paddle extends MovingGameObject implements HasKeyInput {
         return Collision.HORIZONTAL;
     }
 
-    @Override
     public void onKeyPressed(int keyCode) {
         if (keyCode == KeyEvent.VK_LEFT) {
             velX = -DEFAULT_SPEED;
@@ -53,7 +52,6 @@ public final class Paddle extends MovingGameObject implements HasKeyInput {
         }
     }
 
-    @Override
     public void onKeyReleased(int keyCode) {
         if (keyCode == KeyEvent.VK_LEFT && velX < 0 || keyCode == KeyEvent.VK_RIGHT && velX > 0) {
             stop();

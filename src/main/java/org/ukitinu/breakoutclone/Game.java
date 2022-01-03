@@ -1,5 +1,7 @@
 package org.ukitinu.breakoutclone;
 
+import lombok.AccessLevel;
+import lombok.Getter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,21 +18,27 @@ public class Game extends Canvas implements Runnable {
     private static final Logger LOG = LogManager.getLogger(Game.class);
 
     private boolean running = false;
-    private final Room room = Room.INSTANCE;
-
     private Thread thread;
 
-    public Game(String title) {
-        this.addKeyListener(new KeyListener());
+    @Getter(AccessLevel.PACKAGE)
+    private GameState state;
+
+    Game(String title) {
+        addKeyListener(new KeyListener());
+        addKeyListener(Menu.INSTANCE);
 
         new Window(WIDTH, HEIGHT, title, this);
 
         Spawner.INSTANCE.placeBricks(6);
         Spawner.INSTANCE.placeBall();
         Spawner.INSTANCE.placePaddle();
+
+        this.state = GameState.PLAY;
+        tick();
+        this.state = GameState.PAUSE;
     }
 
-    public void start() {
+    void start() {
         synchronized (this) {
             thread = new Thread(this);
             thread.start();
@@ -39,7 +47,7 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    public void stop() {
+    private void stop() {
         synchronized (this) {
             try {
                 thread.join();
@@ -47,6 +55,16 @@ public class Game extends Canvas implements Runnable {
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 throw new IllegalThreadStateException("Game::stop interrupted");
+            }
+        }
+    }
+
+    void switchState() {
+        synchronized (this) {
+            if (state == GameState.PAUSE) {
+                state = GameState.PLAY;
+            } else if (state == GameState.PLAY) {
+                state = GameState.PAUSE;
             }
         }
     }
@@ -89,8 +107,12 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void tick() {
-        room.tick();
-        HUD.INSTANCE.tick();
+        if (state == GameState.PLAY) {
+            Room.INSTANCE.tick();
+            HUD.INSTANCE.tick();
+        } else if (state == GameState.PAUSE) {
+            Menu.INSTANCE.tick();
+        }
     }
 
     private void render() {
@@ -104,8 +126,12 @@ public class Game extends Canvas implements Runnable {
         g.setColor(Color.BLACK);
         g.fillRect(0, HUD.HEIGHT, WIDTH, HEIGHT - HUD.HEIGHT);
 
-        room.render(g);
+        Room.INSTANCE.render(g);
         HUD.INSTANCE.render(g);
+
+        if (state == GameState.PAUSE) {
+            Menu.INSTANCE.render(g);
+        }
 
         g.dispose();
         bs.show();

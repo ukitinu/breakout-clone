@@ -5,8 +5,9 @@ public final class Main {
         throw new IllegalStateException("non-instantiable");
     }
 
+    static final Game GAME = new Game("Breakout clone");
+
     public static void main(String[] args) {
-        Game game = new Game("Breakout clone");
-        game.start();
+        GAME.start();
     }
 }

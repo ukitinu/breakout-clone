@@ -56,7 +56,7 @@ public enum HUD implements Drawable {
 
     private void drawScore(Graphics g) {
         g.setColor(Color.RED);
-        g.drawString("Score: " + score, 0, SCORE_Y);
+        g.drawString("SCORE: " + score, 0, SCORE_Y);
     }
 
     public void updateScore(HasScore obj) {
