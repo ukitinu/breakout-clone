@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 FILE_LIST_NAME=".pre_commit_file_list"
 EXIT_LINT=4
 #IGNORE_LINT="continue"
-PMD_CMD=".githooks/pmd-bin-6.34.0/bin/pmd.bat"
+PMD_CMD="pmd.bat"
 PMD_RULES=".githooks/pmd_java_rules.xml"
 
 [[ -e "$FILE_LIST_NAME" ]] && { echo "Delete $FILE_LIST_NAME before commit"; exit 1; }
@@ -32,6 +32,7 @@ then
   echo
   echo "Lint detected, commit aborted"
   echo "To ignore this warning commit with '--no-verify' option"
+  echo
   exit 1
   # I can't get the 'read' command to work on Git for Windows
   #read -r -p "Committed java files have lint. Enter '${IGNORE_LINT}' to ignore: " choice
@@ -41,6 +42,7 @@ then
   echo
   echo "PMD returned error"
   echo "To bypass this problem commit with '--no-verify' option"
+  echo
   exit 1
 fi
 

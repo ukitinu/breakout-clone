@@ -36,10 +36,9 @@
     <rule ref="category/java/codestyle.xml/ExtendsObject"/>
     <rule ref="category/java/codestyle.xml/IdenticalCatchBranches"/>
     <rule ref="category/java/codestyle.xml/UnnecessaryCast"/>
-    <rule ref="category/java/codestyle.xml/UnnecessaryFullyQualifiedName"/>
     <rule ref="category/java/codestyle.xml/UnnecessaryLocalBeforeReturn">
         <properties>
-            <property name="statementOrderMatters" value="false"/>
+            <property name="statementOrderMatters" value="true"/>
         </properties>
     </rule>
     <rule ref="category/java/codestyle.xml/UnnecessaryModifier"/>
@@ -86,6 +85,7 @@
     <rule ref="category/java/errorprone.xml/AvoidMultipleUnaryOperators"/>
     <rule ref="category/java/errorprone.xml/BrokenNullCheck"/>
     <rule ref="category/java/errorprone.xml/CompareObjectsWithEquals"/>
+    <rule ref="category/java/errorprone.xml/ConstructorCallsOverridableMethod"/>
     <rule ref="category/java/errorprone.xml/DoNotThrowExceptionInFinally"/>
     <rule ref="category/java/errorprone.xml/DontImportSun"/>
     <rule ref="category/java/errorprone.xml/EmptyCatchBlock">

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 MIN_LENGTH=12
 
@@ -10,6 +10,7 @@ message=$(echo "$message" | tr --squeeze ' ')
 [[ "${#message}" -lt "${MIN_LENGTH}" ]] && {
   echo
   echo "Commit message should be at least ${MIN_LENGTH} chars long"
+  echo
   exit 1
 }
 
