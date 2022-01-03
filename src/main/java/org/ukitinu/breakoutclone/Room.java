@@ -4,10 +4,7 @@ import org.ukitinu.breakoutclone.objects.*;
 import org.ukitinu.breakoutclone.objects.bricks.Brick;
 
 import java.awt.Graphics;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public enum Room {
@@ -53,6 +50,14 @@ public enum Room {
 
     public List<Modifier> getModifiers() {
         return objects.get(ObjectType.MODIFIER).stream().map(o -> (Modifier) o).collect(Collectors.toList());
+    }
+
+    public List<GameObject> getCollidables() {
+        List<GameObject> list = new ArrayList<>();
+        for (ObjectType type : ObjectType.values()) {
+            if (type.hasCollision()) list.addAll(objects.get(type));
+        }
+        return list;
     }
 
     public void tick() {

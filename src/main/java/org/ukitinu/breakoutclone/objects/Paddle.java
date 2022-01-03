@@ -4,7 +4,7 @@ import org.ukitinu.breakoutclone.Game;
 import org.ukitinu.breakoutclone.ObjectType;
 import org.ukitinu.breakoutclone.Utils;
 import org.ukitinu.breakoutclone.collision.Collision;
-import org.ukitinu.breakoutclone.collision.HasCollision;
+import org.ukitinu.breakoutclone.collision.Collidable;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -34,10 +34,10 @@ public final class Paddle extends MovingGameObject {
     }
 
     @Override
-    public Collision findCollision(HasCollision other) {
-        Collision basicCollision = super.findCollision(other);
+    public Collision findCollision(Collidable target) {
+        Collision basicCollision = super.findCollision(target);
         if (basicCollision == Collision.NONE) return basicCollision;
-        Rectangle r = other.getCollision();
+        Rectangle r = target.getCollision();
         int xMiddle = r.x + (r.width + 1) / 2;
         if (xMiddle <= x + SIDE_WIDTH) return Collision.LEFT_SIDE;
         if (xMiddle >= x + SIDE_WIDTH * 7) return Collision.RIGHT_SIDE;

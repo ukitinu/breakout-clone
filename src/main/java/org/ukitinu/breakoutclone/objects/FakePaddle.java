@@ -25,6 +25,7 @@ public class FakePaddle extends MovingGameObject implements ActionListener, HasS
         setVelX(SPEED);
     }
 
+    @Override
     public void onHit() {
         HUD.INSTANCE.updateScore(this);
         Room.INSTANCE.remove(this);

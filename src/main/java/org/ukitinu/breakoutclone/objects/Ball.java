@@ -2,10 +2,10 @@ package org.ukitinu.breakoutclone.objects;
 
 import org.ukitinu.breakoutclone.*;
 import org.ukitinu.breakoutclone.collision.Collision;
-import org.ukitinu.breakoutclone.objects.bricks.Brick;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.List;
 import java.util.Random;
 
 public final class Ball extends MovingGameObject {
@@ -25,9 +25,7 @@ public final class Ball extends MovingGameObject {
 
     @Override
     public void tick() {
-        checkPaddleCollision();
-        checkFakePaddleCollision();
-        checkBrickCollision();
+        checkCollision();
 
         if (y >= Game.HEIGHT - height * 3) {
             velY = -Math.abs(velY);
@@ -53,13 +51,23 @@ public final class Ball extends MovingGameObject {
         velY = velY > 0 ? Utils.minMax(MIN_SPEED, velY + val, MAX_SPEED) : Utils.minMax(-MAX_SPEED, velY - val, -MIN_SPEED);
     }
 
-    private void checkPaddleCollision() {
-        Collision paddleCollision = Room.INSTANCE.getPlayerPaddle().findCollision(this);
-        if (paddleCollision != Collision.NONE) {
-            velY = -velY;
-            if (paddleCollision == Collision.LEFT_SIDE && velX > 0) velX = -velX;
-            else if (paddleCollision == Collision.RIGHT_SIDE && velX < 0) velX = -velX;
-            adjustY();
+    private void checkCollision() {
+        List<GameObject> collidables = Room.INSTANCE.getCollidables();
+        for(GameObject o : collidables) {
+            Collision collision = o.findCollision(this);
+            if (collision != Collision.NONE) {
+                o.onHit();
+                if (o instanceof Paddle) {
+                    velY = -velY;
+                    if (collision == Collision.LEFT_SIDE && velX > 0) velX = -velX;
+                    else if (collision == Collision.RIGHT_SIDE && velX < 0) velX = -velX;
+                    adjustY();
+                } else {
+                    if (collision.isVertical()) velY = -velY;
+                    else velX = -velX;
+                }
+                break;
+            }
         }
     }
 
@@ -74,30 +82,6 @@ public final class Ball extends MovingGameObject {
             delta = paddle.getY() - y - height;
         }
         y += delta;
-    }
-
-    private void checkFakePaddleCollision() {
-        for (FakePaddle fakePaddle : Room.INSTANCE.getFakePaddles()) {
-            Collision collision = findCollision(fakePaddle);
-            if (collision != Collision.NONE) {
-                fakePaddle.onHit();
-                if (collision.isVertical()) velY = -velY;
-                else velX = -velX;
-                break;
-            }
-        }
-    }
-
-    private void checkBrickCollision() {
-        for (Brick brick : Room.INSTANCE.getBricks()) {
-            Collision collision = findCollision(brick);
-            if (collision != Collision.NONE) {
-                brick.onHit();
-                if (collision.isVertical()) velY = -velY;
-                else velX = -velX;
-                break;
-            }
-        }
     }
 
 }
