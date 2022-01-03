@@ -1,6 +1,6 @@
 package org.ukitinu.breakoutclone.objects;
 
-import org.ukitinu.breakoutclone.GameConst;
+import org.ukitinu.breakoutclone.game.GameConst;
 import org.ukitinu.breakoutclone.ObjectType;
 import org.ukitinu.breakoutclone.Utils;
 import org.ukitinu.breakoutclone.collision.Collidable;

@@ -16,6 +16,6 @@ public interface Collidable {
     }
 
     default void onHit() {
-        //do nothing
+        //do nothing by default
     }
 }

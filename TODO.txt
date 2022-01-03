@@ -1,6 +1,3 @@
-ORA
-WobblyBrick
-
 DOPO
 Livelli con difficoltà
 Menù

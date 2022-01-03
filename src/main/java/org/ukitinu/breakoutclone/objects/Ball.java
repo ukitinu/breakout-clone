@@ -2,6 +2,7 @@ package org.ukitinu.breakoutclone.objects;
 
 import org.ukitinu.breakoutclone.*;
 import org.ukitinu.breakoutclone.collision.Collision;
+import org.ukitinu.breakoutclone.game.GameConst;
 
 import java.awt.*;
 import java.util.List;

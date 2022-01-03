@@ -1,5 +1,6 @@
 package org.ukitinu.breakoutclone;
 
+import org.ukitinu.breakoutclone.game.GameConst;
 import org.ukitinu.breakoutclone.objects.Ball;
 import org.ukitinu.breakoutclone.objects.FakePaddle;
 import org.ukitinu.breakoutclone.objects.Modifier;

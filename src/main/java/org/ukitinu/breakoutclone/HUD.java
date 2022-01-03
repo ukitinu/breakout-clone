@@ -1,5 +1,6 @@
 package org.ukitinu.breakoutclone;
 
+import org.ukitinu.breakoutclone.game.GameConst;
 import org.ukitinu.breakoutclone.objects.HasScore;
 
 import java.awt.*;

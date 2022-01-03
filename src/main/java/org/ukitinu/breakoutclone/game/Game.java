@@ -1,14 +1,26 @@
-package org.ukitinu.breakoutclone;
+package org.ukitinu.breakoutclone.game;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.ukitinu.breakoutclone.Menu;
+import org.ukitinu.breakoutclone.*;
 
 import java.awt.*;
 
+import static org.ukitinu.breakoutclone.game.GameConst.TARGET_FPS_HIGH;
+import static org.ukitinu.breakoutclone.game.GameConst.TARGET_FPS_LOW;
+
 public class Game extends Canvas implements Runnable {
     private static final Logger LOG = LogManager.getLogger(Game.class);
+
+    private int millisCounter = 0;
+    private static final int MILLIS_COUNTER_MAX = 10;
+    private int millisWait = 10;
+
+    private long timer;
+    private int fps;
 
     private boolean running = false;
     private Thread thread;
@@ -75,8 +87,8 @@ public class Game extends Canvas implements Runnable {
     public void run() {
         long prev = System.nanoTime();
         double skippedFrames = 0;
-        long timer = System.currentTimeMillis();
-        int frameCount = 0;
+        timer = System.currentTimeMillis();
+        fps = 0;
         while (running) {
             long now = System.nanoTime();
             skippedFrames += (now - prev) / ((double) GameConst.OPTIMAL_TIME);
@@ -89,16 +101,13 @@ public class Game extends Canvas implements Runnable {
 
             if (running) render();
 
-            frameCount++;
+            fps++;
 
-            if (System.currentTimeMillis() - timer > 1_000) {
-                timer += 1000;
-                LOG.info("FPS: {}", frameCount);
-                frameCount = 0;
-            }
+            if (System.currentTimeMillis() - timer > 1_000) controlFps();
+
             try {
                 //noinspection BusyWait
-                Thread.sleep(5);
+                Thread.sleep(millisWait);
             } catch (InterruptedException e) {
                 LOG.error("Game::run interrupted");
                 running = false;
@@ -108,12 +117,36 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
+    private void controlFps() {
+        timer += 1000;
+        LOG.info("FPS: {}, millisWait: {}", fps, millisWait);
+
+        if (fps < TARGET_FPS_LOW) {
+            if (millisCounter <= -MILLIS_COUNTER_MAX) {
+                millisWait--;
+                millisCounter = 0;
+            } else {
+                millisCounter--;
+            }
+        } else if (fps > TARGET_FPS_HIGH) {
+            if (millisCounter >= MILLIS_COUNTER_MAX) {
+                millisWait++;
+                millisCounter = 0;
+            } else {
+                millisCounter++;
+            }
+        } else {
+            millisCounter = 0;
+        }
+        fps = 0;
+    }
+
     private void tick() {
         if (state == GameState.PLAY) {
             Room.INSTANCE.tick();
             HUD.INSTANCE.tick();
         } else if (state == GameState.PAUSE) {
-            Menu.INSTANCE.tick();
+            org.ukitinu.breakoutclone.Menu.INSTANCE.tick();
         }
         if (Room.INSTANCE.countBricks() == 0) {
             Room.INSTANCE.clear();

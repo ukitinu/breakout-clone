@@ -2,6 +2,8 @@ package org.ukitinu.breakoutclone;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.ukitinu.breakoutclone.game.GameConst;
+import org.ukitinu.breakoutclone.game.GameManager;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

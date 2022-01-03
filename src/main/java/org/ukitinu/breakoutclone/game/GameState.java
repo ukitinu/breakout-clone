@@ -1,4 +1,4 @@
-package org.ukitinu.breakoutclone;
+package org.ukitinu.breakoutclone.game;
 
 public enum GameState {
     PAUSE,

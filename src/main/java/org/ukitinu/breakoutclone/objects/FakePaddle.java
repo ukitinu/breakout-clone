@@ -1,6 +1,7 @@
 package org.ukitinu.breakoutclone.objects;
 
 import org.ukitinu.breakoutclone.*;
+import org.ukitinu.breakoutclone.game.GameConst;
 
 import javax.swing.*;
 import java.awt.*;

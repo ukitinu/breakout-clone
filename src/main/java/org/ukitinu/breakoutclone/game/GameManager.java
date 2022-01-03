@@ -1,4 +1,4 @@
-package org.ukitinu.breakoutclone;
+package org.ukitinu.breakoutclone.game;
 
 public final class GameManager {
     private GameManager() {
@@ -11,11 +11,11 @@ public final class GameManager {
         GAME.start();
     }
 
-    static void switchGameState(){
+    public static void switchGameState(){
         GAME.switchState();
     }
 
-    static int getCurrentLevel(){
+    public static int getCurrentLevel(){
         return GAME.getLevel();
     }
 }

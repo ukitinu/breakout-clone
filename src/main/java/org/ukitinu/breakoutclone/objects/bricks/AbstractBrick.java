@@ -2,10 +2,7 @@ package org.ukitinu.breakoutclone.objects.bricks;
 
 import lombok.AccessLevel;
 import lombok.Getter;
-import org.ukitinu.breakoutclone.HUD;
 import org.ukitinu.breakoutclone.ObjectType;
-import org.ukitinu.breakoutclone.Room;
-import org.ukitinu.breakoutclone.Spawner;
 import org.ukitinu.breakoutclone.objects.AbstractGameObject;
 
 import java.awt.*;
@@ -23,13 +20,6 @@ public abstract class AbstractBrick extends AbstractGameObject implements Brick 
         this.yCentre = y + getHeight() / 2;
         this.xUnit = getWidth() / 20;
         this.yUnit = getHeight() / 12;
-    }
-
-    @Override
-    public void onHit() {
-        Spawner.INSTANCE.placeModifier(x + Brick.WIDTH / 2, y + Brick.HEIGHT / 2);
-        HUD.INSTANCE.updateScore(this);
-        Room.INSTANCE.remove(this);
     }
 
     @Override
