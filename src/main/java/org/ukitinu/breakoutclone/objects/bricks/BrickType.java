@@ -10,8 +10,8 @@ import java.util.function.BiFunction;
 @Getter(AccessLevel.PACKAGE)
 public enum BrickType {
     SIMPLE(SimpleBrick::new, 1, 10),
-    FAST(FastBrick::new, 0.1, 1),
-    SLOW(SlowBrick::new, 0.1, 1),
+    FAST(SpeedBrick::fastBrick, 0.06, 1),
+    SLOW(SpeedBrick::slowBrick, 0.04, 1),
     WALL(WallBrick::new, 0.1, 1),
     FAKE_PADDLE(FakePaddleBrick::new, 0.05, 2);
 

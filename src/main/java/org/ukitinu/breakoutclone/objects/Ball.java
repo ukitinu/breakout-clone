@@ -13,13 +13,14 @@ public final class Ball extends MovingGameObject {
     private static final int HEIGHT = 16;
     private static final Random RANDOM = new Random();
     private static final int[] X_VEL = {-3, 3};
-    public static final int MIN_SPEED = 2;
+    public static final int MIN_SPEED = 3;
     private static final int MAX_SPEED = 7;
+    private static final int START_SPEED = 3;
 
     public Ball(int x, int y) {
         super(x, y, WIDTH, HEIGHT, ObjectType.BALL);
         setVelX(X_VEL[RANDOM.nextInt(X_VEL.length)]);
-        setVelY(-3);
+        setVelY(-START_SPEED);
     }
 
     @Override
