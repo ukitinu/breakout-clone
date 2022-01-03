@@ -3,8 +3,7 @@ package org.ukitinu.breakoutclone.objects;
 import org.ukitinu.breakoutclone.*;
 import org.ukitinu.breakoutclone.collision.Collision;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.List;
 import java.util.Random;
 
@@ -16,6 +15,7 @@ public final class Ball extends MovingGameObject {
     public static final int MIN_SPEED = 3;
     private static final int MAX_SPEED = 7;
     private static final int START_SPEED = 3;
+    private static final ObjectType[] OBSTACLES = {ObjectType.BRICK, ObjectType.PADDLE, ObjectType.FAKE_PADDLE};
 
     public Ball(int x, int y) {
         super(x, y, WIDTH, HEIGHT, ObjectType.BALL);
@@ -52,8 +52,8 @@ public final class Ball extends MovingGameObject {
     }
 
     private void checkCollision() {
-        List<GameObject> collidables = Room.INSTANCE.getCollidables();
-        for(GameObject o : collidables) {
+        List<GameObject> collidables = Room.INSTANCE.getCollidables(OBSTACLES);
+        for (GameObject o : collidables) {
             Collision collision = o.findCollision(this);
             if (collision != Collision.NONE) {
                 o.onHit();

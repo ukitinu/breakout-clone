@@ -1,6 +1,6 @@
 package org.ukitinu.breakoutclone;
 
-import java.awt.Graphics;
+import java.awt.*;
 
 public interface Drawable {
 

@@ -3,7 +3,8 @@ package org.ukitinu.breakoutclone;
 import org.ukitinu.breakoutclone.objects.*;
 import org.ukitinu.breakoutclone.objects.bricks.Brick;
 
-import java.awt.Graphics;
+import java.awt.*;
+import java.util.List;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -52,9 +53,10 @@ public enum Room {
         return objects.get(ObjectType.MODIFIER).stream().map(o -> (Modifier) o).collect(Collectors.toList());
     }
 
-    public List<GameObject> getCollidables() {
+    public List<GameObject> getCollidables(ObjectType... types) {
+        if (types == null) types = ObjectType.values();
         List<GameObject> list = new ArrayList<>();
-        for (ObjectType type : ObjectType.values()) {
+        for (ObjectType type : types) {
             if (type.hasCollision()) list.addAll(objects.get(type));
         }
         return list;

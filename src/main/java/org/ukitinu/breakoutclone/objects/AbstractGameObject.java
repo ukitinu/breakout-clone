@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.ukitinu.breakoutclone.ObjectType;
 
-import java.awt.Rectangle;
+import java.awt.*;
 
 @Getter
 @Setter

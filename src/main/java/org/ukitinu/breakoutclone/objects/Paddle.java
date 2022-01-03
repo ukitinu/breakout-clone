@@ -3,8 +3,8 @@ package org.ukitinu.breakoutclone.objects;
 import org.ukitinu.breakoutclone.Game;
 import org.ukitinu.breakoutclone.ObjectType;
 import org.ukitinu.breakoutclone.Utils;
-import org.ukitinu.breakoutclone.collision.Collision;
 import org.ukitinu.breakoutclone.collision.Collidable;
+import org.ukitinu.breakoutclone.collision.Collision;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

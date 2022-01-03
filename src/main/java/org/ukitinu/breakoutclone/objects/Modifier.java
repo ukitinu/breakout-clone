@@ -4,8 +4,7 @@ import org.ukitinu.breakoutclone.Game;
 import org.ukitinu.breakoutclone.ObjectType;
 import org.ukitinu.breakoutclone.Room;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class Modifier extends MovingGameObject {
     public static final int WIDTH = 12;

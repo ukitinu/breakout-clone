@@ -2,10 +2,7 @@ package org.ukitinu.breakoutclone;
 
 import org.ukitinu.breakoutclone.objects.HasScore;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 
 public enum HUD implements Drawable {
 

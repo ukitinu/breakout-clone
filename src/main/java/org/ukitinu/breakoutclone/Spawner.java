@@ -3,8 +3,8 @@ package org.ukitinu.breakoutclone;
 import org.ukitinu.breakoutclone.objects.Ball;
 import org.ukitinu.breakoutclone.objects.FakePaddle;
 import org.ukitinu.breakoutclone.objects.Modifier;
-import org.ukitinu.breakoutclone.objects.bricks.Brick;
 import org.ukitinu.breakoutclone.objects.Paddle;
+import org.ukitinu.breakoutclone.objects.bricks.Brick;
 import org.ukitinu.breakoutclone.objects.bricks.BrickFactory;
 
 public enum Spawner {

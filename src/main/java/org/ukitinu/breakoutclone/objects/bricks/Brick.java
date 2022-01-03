@@ -5,7 +5,7 @@ import org.ukitinu.breakoutclone.collision.Collidable;
 import org.ukitinu.breakoutclone.objects.GameObject;
 import org.ukitinu.breakoutclone.objects.HasScore;
 
-import java.awt.Graphics;
+import java.awt.*;
 
 public interface Brick extends GameObject, Drawable, Collidable, HasScore {
 
@@ -15,7 +15,7 @@ public interface Brick extends GameObject, Drawable, Collidable, HasScore {
     void drawSymbol(Graphics g);
 
     /**
-     * Forces implementation.
+     * Removes 'default' to force implementation.
      */
     @Override
     void onHit();

@@ -3,10 +3,10 @@ package org.ukitinu.breakoutclone.objects.bricks;
 import lombok.AccessLevel;
 import lombok.Getter;
 import org.ukitinu.breakoutclone.HUD;
+import org.ukitinu.breakoutclone.ObjectType;
 import org.ukitinu.breakoutclone.Room;
 import org.ukitinu.breakoutclone.Spawner;
 import org.ukitinu.breakoutclone.objects.AbstractGameObject;
-import org.ukitinu.breakoutclone.ObjectType;
 
 import java.awt.*;
 

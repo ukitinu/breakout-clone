@@ -1,8 +1,11 @@
 package org.ukitinu.breakoutclone.objects;
 
-import org.ukitinu.breakoutclone.*;
+import org.ukitinu.breakoutclone.Game;
+import org.ukitinu.breakoutclone.HUD;
+import org.ukitinu.breakoutclone.ObjectType;
+import org.ukitinu.breakoutclone.Room;
 
-import javax.swing.Timer;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
