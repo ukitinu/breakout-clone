@@ -86,7 +86,6 @@
     <rule ref="category/java/errorprone.xml/AvoidMultipleUnaryOperators"/>
     <rule ref="category/java/errorprone.xml/BrokenNullCheck"/>
     <rule ref="category/java/errorprone.xml/CompareObjectsWithEquals"/>
-    <rule ref="category/java/errorprone.xml/ConstructorCallsOverridableMethod"/>
     <rule ref="category/java/errorprone.xml/DoNotThrowExceptionInFinally"/>
     <rule ref="category/java/errorprone.xml/DontImportSun"/>
     <rule ref="category/java/errorprone.xml/EmptyCatchBlock">
@@ -114,7 +113,6 @@
     <rule ref="category/java/multithreading.xml/AvoidSynchronizedAtMethodLevel"/>
     <rule ref="category/java/multithreading.xml/DontCallThreadRun"/>
     <!-- PERFORMANCE -->
-    <rule ref="category/java/performance.xml/AvoidInstantiatingObjectsInLoops"/>
     <rule ref="category/java/performance.xml/ConsecutiveAppendsShouldReuse"/>
     <rule ref="category/java/performance.xml/ConsecutiveLiteralAppends"/>
     <!-- SECURITY -->

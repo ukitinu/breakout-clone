@@ -1,6 +1,6 @@
 package org.ukitinu.breakoutclone.objects;
 
-import org.ukitinu.breakoutclone.Game;
+import org.ukitinu.breakoutclone.GameConst;
 import org.ukitinu.breakoutclone.ObjectType;
 import org.ukitinu.breakoutclone.Utils;
 import org.ukitinu.breakoutclone.collision.Collidable;
@@ -22,7 +22,7 @@ public final class Paddle extends MovingGameObject {
     @Override
     public void tick() {
         super.tick();
-        x = Utils.minMax(0, x, Game.WIDTH - width - width / 5 - 1);
+        x = Utils.minMax(0, x, GameConst.WIDTH - width - width / 5 - 1);
     }
 
     @Override

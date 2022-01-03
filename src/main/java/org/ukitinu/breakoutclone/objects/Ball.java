@@ -27,14 +27,14 @@ public final class Ball extends MovingGameObject {
     public void tick() {
         checkCollision();
 
-        if (y >= Game.HEIGHT - height * 3) {
+        if (y >= GameConst.HEIGHT - height * 3) {
             velY = -Math.abs(velY);
             HUD.INSTANCE.dropLife();
         } else if (y <= HUD.HEIGHT) {
             velY = Math.abs(velY);
         } else if (x <= 0) {
             velX = Math.abs(velX);
-        } else if (x >= Game.WIDTH - width * 2) {
+        } else if (x >= GameConst.WIDTH - width * 2) {
             velX = -Math.abs(velX);
         }
 

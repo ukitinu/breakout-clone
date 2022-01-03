@@ -23,7 +23,8 @@ public enum Menu implements Drawable, KeyListener {
         g.setFont(font);
 
         g.setColor(Color.BLUE);
-        g.drawString(MAIN_MESSAGE, MAIN_X, Game.HEIGHT / 2);
+        String title = String.format(MAIN_MESSAGE, GameManager.getCurrentLevel());
+        g.drawString(title, MAIN_X, GameConst.HEIGHT / 2);
 
         font = new Font(Font.MONOSPACED, Font.PLAIN, SECOND_SIZE);
         g.setFont(font);
@@ -52,24 +53,24 @@ public enum Menu implements Drawable, KeyListener {
 
         } else if (key == KeyEvent.VK_SPACE) {
             LOG.info("SPACEBAR");
-            Main.GAME.switchState();
+            GameManager.switchGameState();
         }
     }
 
-    private static final String MAIN_MESSAGE = "PAUSED";
+    private static final String MAIN_MESSAGE = "LEVEL %d";
     private static final int MAIN_SIZE = 20;
-    private static final int MAIN_X = Game.WIDTH / 2 - MAIN_SIZE * MAIN_MESSAGE.length() / 2;
+    private static final int MAIN_X = GameConst.WIDTH / 2 - MAIN_SIZE * MAIN_MESSAGE.length() / 2;
 
     private static final int SECOND_SIZE = 16;
-    private static final int SECOND_X = Game.WIDTH / 2 - MAIN_SIZE * MAIN_MESSAGE.length();
+    private static final int SECOND_X = GameConst.WIDTH / 2 - MAIN_SIZE * MAIN_MESSAGE.length();
 
     private static final String RESUME_MESSAGE = "[SPACE] - (UN)PAUSE";
-    private static final int RESUME_Y = Game.HEIGHT / 2 + 48;
+    private static final int RESUME_Y = GameConst.HEIGHT / 2 + 48;
 
     private static final String QUIT_MESSAGE = "[ESC]   - QUIT";
     private static final int QUIT_Y = RESUME_Y + SECOND_SIZE + 8;
 
     private static final String KEYS_MESSAGE = "Use left and right arrows to move";
     private static final int KEYS_Y = QUIT_Y + SECOND_SIZE + 16;
-    private static final int KEYS_X = Game.WIDTH / 2 - SECOND_SIZE * KEYS_MESSAGE.length() / 3;
+    private static final int KEYS_X = GameConst.WIDTH / 2 - SECOND_SIZE * KEYS_MESSAGE.length() / 3;
 }

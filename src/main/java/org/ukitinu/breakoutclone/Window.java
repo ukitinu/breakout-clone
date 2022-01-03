@@ -4,9 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 
 class Window extends Canvas {
+    private static final String TITLE = "Yet another Breakout clone";
+    private static final String TITLE_LEVEL = "%s - Level %d";
 
-    Window(int width, int height, String title, Component comp) {
-        JFrame frame = new JFrame(title);
+    private final JFrame frame = new JFrame();
+
+    Window(int width, int height, Component comp) {
+        setLevel(1);
 
         frame.setPreferredSize(new Dimension(width, height));
         frame.setMaximumSize(new Dimension(width, height));
@@ -18,6 +22,10 @@ class Window extends Canvas {
         frame.setVisible(true);
 
         frame.add(comp);
+    }
+
+    void setLevel(int level) {
+        frame.setTitle(String.format(TITLE_LEVEL, TITLE, level));
     }
 
 }

@@ -32,22 +32,22 @@ public enum HUD implements Drawable {
 
     private void drawContainer(Graphics g) {
         g.setColor(Color.DARK_GRAY);
-        g.fillRect(0, 0, Game.WIDTH, HEIGHT);
+        g.fillRect(0, 0, GameConst.WIDTH, HEIGHT);
     }
 
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     private void drawLives(Graphics g) {
         g.setColor(Color.GRAY);
-        g.fillRect(Game.WIDTH - HUD_WIDTH * MAX_LIVES - ADJUSTMENT, 0, HUD_WIDTH * MAX_LIVES, HUD_HEIGHT);
+        g.fillRect(GameConst.WIDTH - HUD_WIDTH * MAX_LIVES - ADJUSTMENT, 0, HUD_WIDTH * MAX_LIVES, HUD_HEIGHT);
 
         g.setColor(Color.RED);
-        g.fillRect(Game.WIDTH - HUD_WIDTH * lives - ADJUSTMENT, 0, HUD_WIDTH * lives, HUD_HEIGHT);
+        g.fillRect(GameConst.WIDTH - HUD_WIDTH * lives - ADJUSTMENT, 0, HUD_WIDTH * lives, HUD_HEIGHT);
 
         g.setColor(Color.WHITE);
         for (int i = 1; i <= MAX_LIVES; i++) {
             Graphics2D g2d = (Graphics2D) g;
             g2d.setStroke(new BasicStroke(1));
-            g2d.drawRect(Game.WIDTH - HUD_WIDTH * i - ADJUSTMENT, 0, HUD_WIDTH, HUD_HEIGHT);
+            g2d.drawRect(GameConst.WIDTH - HUD_WIDTH * i - ADJUSTMENT, 0, HUD_WIDTH, HUD_HEIGHT);
         }
     }
 

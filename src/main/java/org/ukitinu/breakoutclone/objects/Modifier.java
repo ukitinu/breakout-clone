@@ -1,6 +1,6 @@
 package org.ukitinu.breakoutclone.objects;
 
-import org.ukitinu.breakoutclone.Game;
+import org.ukitinu.breakoutclone.GameConst;
 import org.ukitinu.breakoutclone.ObjectType;
 import org.ukitinu.breakoutclone.Room;
 
@@ -22,7 +22,7 @@ public class Modifier extends MovingGameObject {
 
     @Override
     public void tick() {
-        if (y >= Game.HEIGHT) {
+        if (y >= GameConst.HEIGHT) {
             Room.INSTANCE.remove(this);
         } else {
             super.tick();

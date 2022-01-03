@@ -1,9 +1,6 @@
 package org.ukitinu.breakoutclone.objects;
 
-import org.ukitinu.breakoutclone.Game;
-import org.ukitinu.breakoutclone.HUD;
-import org.ukitinu.breakoutclone.ObjectType;
-import org.ukitinu.breakoutclone.Room;
+import org.ukitinu.breakoutclone.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,7 +40,7 @@ public class FakePaddle extends MovingGameObject implements ActionListener, HasS
     public void tick() {
         if (x <= 0) {
             velX = Math.abs(velX);
-        } else if (x >= Game.WIDTH - width - width / 3) {
+        } else if (x >= GameConst.WIDTH - width - width / 3) {
             velX = -Math.abs(velX);
         }
 

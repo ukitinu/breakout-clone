@@ -10,16 +10,16 @@ import org.ukitinu.breakoutclone.objects.bricks.BrickFactory;
 public enum Spawner {
     INSTANCE;
 
-    private static final int PADDLE_SPAWN_X = (Game.WIDTH - Paddle.WIDTH) / 2;
-    private static final int PADDLE_SPAWN_Y = Game.HEIGHT - 64;
+    private static final int PADDLE_SPAWN_X = (GameConst.WIDTH - Paddle.WIDTH) / 2;
+    private static final int PADDLE_SPAWN_Y = GameConst.HEIGHT - 64;
     private static final int PADDLE_SPAWN_Y_DIST = 64;
-    private static final int FAKE_PADDLE_SPAWN_Y = Game.HEIGHT - 64 * 3;
+    private static final int FAKE_PADDLE_SPAWN_Y = GameConst.HEIGHT - 64 * 3;
 
-    private static final int BALL_SPAWN_X = (Game.WIDTH - Ball.WIDTH) / 2;
-    private static final int BALL_SPAWN_Y = Game.HEIGHT - PADDLE_SPAWN_Y_DIST * 2;
+    private static final int BALL_SPAWN_X = (GameConst.WIDTH - Ball.WIDTH) / 2;
+    private static final int BALL_SPAWN_Y = GameConst.HEIGHT - PADDLE_SPAWN_Y_DIST * 2;
 
-    private static final int BRICK_COLUMNS = (Game.WIDTH - 20) / Brick.WIDTH;
-    public static final int BRICK_SPAWN_X = (Game.WIDTH - Brick.WIDTH * BRICK_COLUMNS) / 2;
+    private static final int BRICK_COLUMNS = (GameConst.WIDTH - 20) / Brick.WIDTH;
+    public static final int BRICK_SPAWN_X = (GameConst.WIDTH - Brick.WIDTH * BRICK_COLUMNS) / 2;
     public static final int BRICK_SPAWN_Y = HUD.HEIGHT + 20;
 
 

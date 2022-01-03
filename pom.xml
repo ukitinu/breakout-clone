@@ -81,7 +81,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>${build.target}/</classpathPrefix>
-                            <mainClass>org.ukitinu.breakoutclone.Main</mainClass>
+                            <mainClass>org.ukitinu.breakoutclone.GameManager</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
