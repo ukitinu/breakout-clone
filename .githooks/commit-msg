@@ -1,0 +1,18 @@
+#!/bin/bash
+
+MIN_LENGTH=12
+
+message=$(cat "$1")
+message="${message##[[:space:]]}"
+message="${message%%[[:space:]]}"
+message=$(echo "$message" | tr --squeeze ' ')
+
+[[ "${#message}" -lt "${MIN_LENGTH}" ]] && {
+  echo
+  echo "Commit message should be at least ${MIN_LENGTH} chars long"
+  exit 1
+}
+
+echo "$message" >"$1"
+
+exit 0
