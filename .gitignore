@@ -11,9 +11,6 @@ hs_err_pid*
 ### Maven template
 target/
 
-# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
-!/.mvn/wrapper/maven-wrapper.jar
-
 .classpath
 .project
 .settings/
@@ -21,8 +18,9 @@ target/
 
 *.iml
 *.ipr
-# File-based project format
 *.iws
 
 .pre_commit_file_list
 .githooks/pmd-bin-6.34.0/
+
+/logs

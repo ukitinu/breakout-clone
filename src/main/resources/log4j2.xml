@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
     <Appenders>
-        <Console name="LogToConsole" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        <RollingFile
+                name="rollingFile"
+                fileName="./logs/breakout-clone.log"
+                filePattern="./logs/breakout-clone.log.%d{yyyy-MM-dd}.%i.gz"
+                ignoreExceptions="false">
+            <PatternLayout pattern="%d{ISO8601} : %-5level : %-10c{1} : %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="4 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        <Console
+                name="LogToConsole"
+                target="SYSTEM_OUT"
+                ignoreExceptions="false">
+            <PatternLayout pattern="%d{ISO8601} : %-5level : %-10c{1} : %m%n"/>
+            <!--            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>-->
         </Console>
-<!--        <File name="LogToFile" fileName="log.log">-->
-<!--            <PatternLayout pattern="d %p %c{1.} [%t] %m%n"/>-->
-<!--        </File>-->
     </Appenders>
     <Loggers>
         <Root level="info">
-<!--            <AppenderRef ref="LogToFile"/>-->
+            <AppenderRef ref="rollingFile"/>
             <AppenderRef ref="LogToConsole"/>
         </Root>
     </Loggers>

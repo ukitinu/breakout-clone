@@ -2,7 +2,6 @@ package ukitinu.breakoutclone;
 
 import ukitinu.breakoutclone.objects.*;
 import ukitinu.breakoutclone.objects.bricks.Brick;
-import ukitinu.breakoutclone.objects.*;
 
 import java.awt.*;
 import java.util.List;
@@ -10,7 +9,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public enum Room {
-
     INSTANCE;
 
     private final Map<ObjectType, LinkedList<GameObject>> objects = new HashMap<>();

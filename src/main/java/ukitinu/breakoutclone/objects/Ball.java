@@ -1,6 +1,5 @@
 package ukitinu.breakoutclone.objects;
 
-import ukitinu.breakoutclone.*;
 import ukitinu.breakoutclone.HUD;
 import ukitinu.breakoutclone.ObjectType;
 import ukitinu.breakoutclone.Room;

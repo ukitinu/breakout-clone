@@ -25,7 +25,7 @@ public enum Menu implements Drawable, KeyListener {
         g.setFont(font);
 
         g.setColor(Color.BLUE);
-        String title = String.format(MAIN_MESSAGE, GameManager.getCurrentLevel());
+        String title = String.format(MAIN_MESSAGE, GameManager.INSTANCE.getCurrentLevel());
         g.drawString(title, MAIN_X, GameConst.HEIGHT / 2);
 
         font = new Font(Font.MONOSPACED, Font.PLAIN, SECOND_SIZE);
@@ -55,7 +55,7 @@ public enum Menu implements Drawable, KeyListener {
 
         } else if (key == KeyEvent.VK_SPACE) {
             LOG.info("SPACEBAR");
-            GameManager.switchGameState();
+            GameManager.INSTANCE.switchGameState();
         }
     }
 

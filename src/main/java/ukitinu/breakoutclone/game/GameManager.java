@@ -1,21 +1,19 @@
 package ukitinu.breakoutclone.game;
 
-public final class GameManager {
-    private GameManager() {
-        throw new IllegalStateException("non-instantiable");
-    }
+public enum GameManager {
+    INSTANCE;
 
-    private static final Game GAME = new Game();
+    private final Game GAME = new Game();
 
-    public static void main(String[] args) {
+    public void start() {
         GAME.start();
     }
 
-    public static void switchGameState(){
+    public void switchGameState() {
         GAME.switchState();
     }
 
-    public static int getCurrentLevel(){
+    public int getCurrentLevel() {
         return GAME.getLevel();
     }
 }

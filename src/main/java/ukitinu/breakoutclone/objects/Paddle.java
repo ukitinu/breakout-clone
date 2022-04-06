@@ -1,10 +1,10 @@
 package ukitinu.breakoutclone.objects;
 
-import ukitinu.breakoutclone.game.GameConst;
 import ukitinu.breakoutclone.ObjectType;
 import ukitinu.breakoutclone.Utils;
 import ukitinu.breakoutclone.collision.Collidable;
 import ukitinu.breakoutclone.collision.Collision;
+import ukitinu.breakoutclone.game.GameConst;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

@@ -43,7 +43,7 @@ public class Game extends Canvas implements Runnable {
 
     void initLevel() {
         window.setLevel(level);
-        Spawner.INSTANCE.placeBricks(1);
+        Spawner.INSTANCE.placeBricks(2);
         Spawner.INSTANCE.placeBall();
         Spawner.INSTANCE.placePaddle();
 
