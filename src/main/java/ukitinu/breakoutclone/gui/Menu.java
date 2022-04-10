@@ -26,15 +26,20 @@ public enum Menu implements Drawable, KeyListener {
         Font font = new Font(Font.MONOSPACED, Font.BOLD, MAIN_SIZE);
         g.setFont(font);
 
+        if (!Game.isOk) {
+            g.setColor(Color.CYAN);
+            g.drawString("You lost a life! Level reset", TEXT_X, GameConst.HEIGHT / 3);
+        }
+
         g.setColor(Color.BLUE);
         String title = String.format(MAIN_MESSAGE, Game.level);
-        g.drawString(title, MAIN_X, GameConst.HEIGHT / 2);
+        g.drawString(title, TEXT_X, GameConst.HEIGHT / 2);
 
         font = new Font(Font.MONOSPACED, Font.PLAIN, SECOND_SIZE);
         g.setFont(font);
-        g.drawString(RESUME_MESSAGE, SECOND_X, RESUME_Y);
-        g.drawString(QUIT_MESSAGE, SECOND_X, QUIT_Y);
-        g.drawString(KEYS_MESSAGE, KEYS_X, KEYS_Y);
+        g.drawString(RESUME_MESSAGE, TEXT_X, RESUME_Y);
+        g.drawString(QUIT_MESSAGE, TEXT_X, QUIT_Y);
+        g.drawString(KEYS_MESSAGE, TEXT_X, KEYS_Y);
     }
 
     @Override
@@ -57,16 +62,17 @@ public enum Menu implements Drawable, KeyListener {
 
         } else if (key == KeyEvent.VK_SPACE) {
             LOG.info("SPACEBAR");
+            Game.isOk = true;
             GameManager.INSTANCE.switchGameState();
         }
     }
 
+
+    private static final int TEXT_X = GameConst.WIDTH / 4;
     private static final String MAIN_MESSAGE = "LEVEL %d";
     private static final int MAIN_SIZE = 20;
-    private static final int MAIN_X = GameConst.WIDTH / 2 - MAIN_SIZE * MAIN_MESSAGE.length() / 2;
 
     private static final int SECOND_SIZE = 16;
-    private static final int SECOND_X = GameConst.WIDTH / 2 - MAIN_SIZE * MAIN_MESSAGE.length();
 
     private static final String RESUME_MESSAGE = "[SPACE] - (UN)PAUSE";
     private static final int RESUME_Y = GameConst.HEIGHT / 2 + 48;
@@ -76,5 +82,4 @@ public enum Menu implements Drawable, KeyListener {
 
     private static final String KEYS_MESSAGE = "Use left and right arrows to move";
     private static final int KEYS_Y = QUIT_Y + SECOND_SIZE + 16;
-    private static final int KEYS_X = GameConst.WIDTH / 2 - SECOND_SIZE * KEYS_MESSAGE.length() / 3;
 }

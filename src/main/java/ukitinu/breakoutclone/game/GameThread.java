@@ -15,7 +15,7 @@ import java.awt.*;
 import static ukitinu.breakoutclone.game.GameConst.TARGET_FPS_HIGH;
 import static ukitinu.breakoutclone.game.GameConst.TARGET_FPS_LOW;
 
-public class GameThread extends Canvas implements Runnable {
+class GameThread extends Canvas implements Runnable {
     private static final Logger LOG = LogManager.getLogger(GameThread.class);
 
     private int millisCounter = 0;
@@ -27,7 +27,7 @@ public class GameThread extends Canvas implements Runnable {
 
     private boolean running = false;
     private Thread thread;
-    private final ukitinu.breakoutclone.gui.Window window;
+    private final Window window;
 
     @Getter(AccessLevel.PACKAGE)
     private GameState state;
@@ -37,28 +37,18 @@ public class GameThread extends Canvas implements Runnable {
         addKeyListener(Menu.INSTANCE);
 
         this.window = new Window(GameConst.WIDTH, GameConst.HEIGHT, this);
-
-        initLevel();
-    }
-
-    void initLevel() {
-        window.setTitle();
-        Spawner.INSTANCE.placeBricks(2);
-        Spawner.INSTANCE.placeBall();
-        Spawner.INSTANCE.placePaddle();
-
-        this.state = GameState.PLAY;
-        tick();
-        this.state = GameState.PAUSE;
     }
 
     void start() {
-        synchronized (this) {
-            thread = new Thread(this);
-            thread.start();
-            running = true;
-            this.requestFocus();
-        }
+        this.state = GameState.PLAY;
+        tick();
+        this.state = GameState.PAUSE;
+        window.setTitle();
+
+        thread = new Thread(this);
+        thread.start();
+        running = true;
+        this.requestFocus();
     }
 
     private void stop() {
@@ -74,12 +64,10 @@ public class GameThread extends Canvas implements Runnable {
     }
 
     void switchState() {
-        synchronized (this) {
-            if (state == GameState.PAUSE) {
-                state = GameState.PLAY;
-            } else if (state == GameState.PLAY) {
-                state = GameState.PAUSE;
-            }
+        if (state == GameState.PAUSE) {
+            state = GameState.PLAY;
+        } else if (state == GameState.PLAY) {
+            state = GameState.PAUSE;
         }
     }
 
@@ -148,12 +136,9 @@ public class GameThread extends Canvas implements Runnable {
         } else if (state == GameState.PAUSE) {
             Menu.INSTANCE.tick();
         }
-        if (Room.INSTANCE.countBricks() == 0) {
-            Room.INSTANCE.clear();
-            Room.INSTANCE.tick();
-            Game.level++;
-            switchState();
-            initLevel();
+        if (Room.INSTANCE.countBricks() <= 0) {
+            Game.nextLevel();
+            window.setTitle();
         }
     }
 

@@ -34,7 +34,7 @@ public final class Ball extends MovingGameObject {
 
         if (y >= GameConst.HEIGHT - height * 3) {
             velY = -Math.abs(velY);
-            Game.lives--;
+            Game.loseLife();
         } else if (y <= HUD.HEIGHT) {
             velY = Math.abs(velY);
         } else if (x <= 0) {
