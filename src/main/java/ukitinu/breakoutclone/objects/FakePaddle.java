@@ -1,9 +1,9 @@
 package ukitinu.breakoutclone.objects;
 
-import ukitinu.breakoutclone.HUD;
 import ukitinu.breakoutclone.ObjectType;
 import ukitinu.breakoutclone.Room;
 import ukitinu.breakoutclone.game.GameConst;
+import ukitinu.breakoutclone.gui.HUD;
 
 import javax.swing.*;
 import java.awt.*;

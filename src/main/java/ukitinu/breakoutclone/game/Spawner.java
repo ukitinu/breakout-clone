@@ -1,6 +1,7 @@
-package ukitinu.breakoutclone;
+package ukitinu.breakoutclone.game;
 
-import ukitinu.breakoutclone.game.GameConst;
+import ukitinu.breakoutclone.Room;
+import ukitinu.breakoutclone.gui.HUD;
 import ukitinu.breakoutclone.objects.Ball;
 import ukitinu.breakoutclone.objects.FakePaddle;
 import ukitinu.breakoutclone.objects.Modifier;

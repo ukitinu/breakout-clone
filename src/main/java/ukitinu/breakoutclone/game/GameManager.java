@@ -3,17 +3,14 @@ package ukitinu.breakoutclone.game;
 public enum GameManager {
     INSTANCE;
 
-    private final Game GAME = new Game();
+    private final GameThread THREAD = new GameThread();
 
     public void start() {
-        GAME.start();
+        Game.init();
+        THREAD.start();
     }
 
     public void switchGameState() {
-        GAME.switchState();
-    }
-
-    public int getCurrentLevel() {
-        return GAME.getLevel();
+        THREAD.switchState();
     }
 }

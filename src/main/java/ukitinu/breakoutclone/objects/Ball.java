@@ -1,11 +1,12 @@
 package ukitinu.breakoutclone.objects;
 
-import ukitinu.breakoutclone.HUD;
 import ukitinu.breakoutclone.ObjectType;
 import ukitinu.breakoutclone.Room;
 import ukitinu.breakoutclone.Utils;
 import ukitinu.breakoutclone.collision.Collision;
+import ukitinu.breakoutclone.game.Game;
 import ukitinu.breakoutclone.game.GameConst;
+import ukitinu.breakoutclone.gui.HUD;
 
 import java.awt.*;
 import java.util.List;
@@ -33,7 +34,7 @@ public final class Ball extends MovingGameObject {
 
         if (y >= GameConst.HEIGHT - height * 3) {
             velY = -Math.abs(velY);
-            HUD.INSTANCE.dropLife();
+            Game.lives--;
         } else if (y <= HUD.HEIGHT) {
             velY = Math.abs(velY);
         } else if (x <= 0) {

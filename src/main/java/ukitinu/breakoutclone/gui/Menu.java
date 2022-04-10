@@ -1,7 +1,9 @@
-package ukitinu.breakoutclone;
+package ukitinu.breakoutclone.gui;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ukitinu.breakoutclone.Drawable;
+import ukitinu.breakoutclone.game.Game;
 import ukitinu.breakoutclone.game.GameConst;
 import ukitinu.breakoutclone.game.GameManager;
 
@@ -16,7 +18,7 @@ public enum Menu implements Drawable, KeyListener {
 
     @Override
     public void tick() {
-
+        // nothing to update tick by tick
     }
 
     @Override
@@ -25,7 +27,7 @@ public enum Menu implements Drawable, KeyListener {
         g.setFont(font);
 
         g.setColor(Color.BLUE);
-        String title = String.format(MAIN_MESSAGE, GameManager.INSTANCE.getCurrentLevel());
+        String title = String.format(MAIN_MESSAGE, Game.level);
         g.drawString(title, MAIN_X, GameConst.HEIGHT / 2);
 
         font = new Font(Font.MONOSPACED, Font.PLAIN, SECOND_SIZE);

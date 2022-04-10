@@ -1,16 +1,17 @@
-package ukitinu.breakoutclone.game;
+package ukitinu.breakoutclone.gui;
+
+import ukitinu.breakoutclone.game.Game;
 
 import javax.swing.*;
 import java.awt.*;
 
-class Window extends Canvas {
+public class Window extends Canvas {
     private static final String TITLE = "Yet another Breakout clone";
-    private static final String TITLE_LEVEL = "%s - Level %d";
 
     private final JFrame frame = new JFrame();
 
-    Window(int width, int height, Component comp) {
-        setLevel(1);
+    public Window(int width, int height, Component comp) {
+        setTitle();
 
         frame.setPreferredSize(new Dimension(width, height));
         frame.setMaximumSize(new Dimension(width, height));
@@ -24,8 +25,8 @@ class Window extends Canvas {
         frame.add(comp);
     }
 
-    void setLevel(int level) {
-        frame.setTitle(String.format(TITLE_LEVEL, TITLE, level));
+    public void setTitle() {
+        frame.setTitle(String.format("%s - Level %d", TITLE, Game.level));
     }
 
 }

@@ -1,6 +1,6 @@
 package ukitinu.breakoutclone.objects.bricks;
 
-import ukitinu.breakoutclone.Spawner;
+import ukitinu.breakoutclone.game.Spawner;
 
 import java.awt.*;
 

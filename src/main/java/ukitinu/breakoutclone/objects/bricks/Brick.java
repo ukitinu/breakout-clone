@@ -1,8 +1,8 @@
 package ukitinu.breakoutclone.objects.bricks;
 
-import ukitinu.breakoutclone.HUD;
 import ukitinu.breakoutclone.Room;
-import ukitinu.breakoutclone.Spawner;
+import ukitinu.breakoutclone.game.Spawner;
+import ukitinu.breakoutclone.gui.HUD;
 import ukitinu.breakoutclone.objects.GameObject;
 import ukitinu.breakoutclone.objects.HasScore;
 

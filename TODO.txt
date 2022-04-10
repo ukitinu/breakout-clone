@@ -1,3 +1,11 @@
+ORA
+gestione vite, se arriva a terra ricominci a meno che non sia l'ultima vita e allora azzeri livelli
+a livello superato +1 vita
+
+
+
+
+
 DOPO
 Livelli con difficoltà
 Menù
