@@ -1,13 +1,11 @@
 package ukitinu.breakoutclone.objects.bricks;
 
-import lombok.AccessLevel;
-import lombok.Getter;
 import ukitinu.breakoutclone.Utils;
+import ukitinu.breakoutclone.game.Game;
 
 import java.util.Random;
 import java.util.function.BiFunction;
 
-@Getter(AccessLevel.PACKAGE)
 public enum BrickType {
     SIMPLE(SimpleBrick::new, 1, 10),
     FAST(SpeedBrick::fastBrick, 0.06, 1),
@@ -16,7 +14,6 @@ public enum BrickType {
     FAKE_PADDLE(FakePaddleBrick::new, 0.05, 2);
 
     private static final Random RANDOM = new Random();
-    private static final BrickType[] ARRAY = buildArray();
 
     private final BiFunction<Integer, Integer, ? extends Brick> constructor;
     private final double ratio;
@@ -26,6 +23,18 @@ public enum BrickType {
         this.constructor = constructor;
         this.ratio = ratio;
         this.chance = chance;
+    }
+
+    public double getRatio() {
+        return this == SIMPLE ? ratio : ratio * (1 + 0.25 * Game.level);
+    }
+
+    public BiFunction<Integer, Integer, ? extends Brick> getConstructor() {
+        return constructor;
+    }
+
+    private int wChance() {
+        return this == SIMPLE ? chance : (int) (chance * (1 + 0.5 * Game.level));
     }
 
     boolean isOk(int row, int column, int rows, int columns) {
@@ -43,22 +52,22 @@ public enum BrickType {
 
     static BrickType random() {
         int pick = RANDOM.nextInt(getChanceSum());
-        return ARRAY[pick];
+        return brickArray()[pick];
     }
 
-    private static BrickType[] buildArray() {
+    private static BrickType[] brickArray() {
         BrickType[] array = new BrickType[getChanceSum()];
         int from = 0;
         for (BrickType type : values()) {
-            Utils.setRange(array, type, from, from + type.chance);
-            from = from + type.chance;
+            Utils.setRange(array, type, from, from + type.wChance());
+            from = from + type.wChance();
         }
         return array;
     }
 
     private static int getChanceSum() {
         int sum = 0;
-        for (BrickType type : values()) sum += type.chance;
+        for (BrickType type : values()) sum += type.wChance();
         return sum;
     }
 }

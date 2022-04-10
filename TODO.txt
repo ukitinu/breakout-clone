@@ -1,17 +1,8 @@
-ORA
-gestione vite, se arriva a terra ricominci a meno che non sia l'ultima vita e allora azzeri livelli
-a livello superato +1 vita
+lose at zero lives
+end game at level x
 
 
-
-
-
-DOPO
-Livelli con difficoltà
-Menù
-
-PENSIERI
-Bonus cadenti
+falling bonuses
 LengthenPaddleBrick
 ShortenPaddleBrick
 EnlargeBallBrick

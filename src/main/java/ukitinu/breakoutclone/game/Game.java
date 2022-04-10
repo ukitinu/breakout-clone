@@ -41,7 +41,7 @@ public final class Game {
     }
 
     private static void placeBasics() {
-        Spawner.INSTANCE.placeBricks(level);
+        Spawner.INSTANCE.placeBricks(level + 1);
         Spawner.INSTANCE.placeBall();
         Spawner.INSTANCE.placePaddle();
     }
