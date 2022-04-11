@@ -26,7 +26,7 @@ public enum BrickType {
     }
 
     public double getRatio() {
-        return this == SIMPLE ? ratio : ratio * (1 + 0.25 * Game.level);
+        return this == SIMPLE ? ratio : ratio * (1 + 0.2 * Game.level);
     }
 
     public BiFunction<Integer, Integer, ? extends Brick> getConstructor() {
@@ -34,7 +34,7 @@ public enum BrickType {
     }
 
     private int wChance() {
-        return this == SIMPLE ? chance : (int) (chance * (1 + 0.5 * Game.level));
+        return this == SIMPLE ? chance : (int) (chance * (1 + 0.4 * Game.level));
     }
 
     boolean isOk(int row, int column, int rows, int columns) {

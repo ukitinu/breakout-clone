@@ -26,9 +26,12 @@ public enum Menu implements Drawable, KeyListener {
         Font font = new Font(Font.MONOSPACED, Font.BOLD, MAIN_SIZE);
         g.setFont(font);
 
-        if (!Game.isOk) {
+        if (Game.lifeLost) {
             g.setColor(Color.CYAN);
-            g.drawString("You lost a life! Level reset", TEXT_X, GameConst.HEIGHT / 3);
+            g.drawString(Game.lives < GameConst.MAX_LIVES ? "Life lost!" : "Game lost!",
+                    TEXT_X, GameConst.HEIGHT / 3);
+            g.drawString(Game.lives < GameConst.MAX_LIVES ? "Level restarted and score reset" : "Full reset",
+                    TEXT_X, GameConst.HEIGHT / 3 + MAIN_SIZE);
         }
 
         g.setColor(Color.BLUE);
@@ -62,7 +65,7 @@ public enum Menu implements Drawable, KeyListener {
 
         } else if (key == KeyEvent.VK_SPACE) {
             LOG.info("SPACEBAR");
-            Game.isOk = true;
+            Game.lifeLost = false;
             GameManager.INSTANCE.switchGameState();
         }
     }

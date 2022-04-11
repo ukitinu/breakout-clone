@@ -1,32 +1,39 @@
 package ukitinu.breakoutclone.game;
 
 import ukitinu.breakoutclone.Room;
-import ukitinu.breakoutclone.Utils;
 
 public final class Game {
     public static int level;
     public static int score;
     public static int lives;
-    public static boolean isOk;
+    public static boolean lifeLost;
 
     private Game() {
     }
 
     static void init() {
+        init(false);
+    }
+
+    private static void init(boolean lost) {
         level = 1;
         score = 0;
         lives = GameConst.MAX_LIVES;
-        isOk = true;
+        lifeLost = lost;
 
         initLevel();
     }
 
     public static void loseLife() {
         lives--;
-        score = Utils.minMax(0, score - level * 3, score);
-        isOk = false;
+        score = 0;
+        lifeLost = true;
 
-        initLevel();
+        if (lives > 0) {
+            initLevel();
+        } else {
+            init(true);
+        }
     }
 
     static void nextLevel() {
@@ -41,7 +48,7 @@ public final class Game {
     }
 
     private static void placeBasics() {
-        Spawner.INSTANCE.placeBricks(level + 1);
+        Spawner.INSTANCE.placeBricks(level * 2);
         Spawner.INSTANCE.placeBall();
         Spawner.INSTANCE.placePaddle();
     }
