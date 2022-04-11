@@ -7,6 +7,7 @@ public final class Game {
     public static int score;
     public static int lives;
     public static boolean lifeLost;
+    public static String message;
 
     private Game() {
     }
@@ -43,8 +44,15 @@ public final class Game {
             score += level * 3;
         }
         level++;
+        if (level <= GameConst.MAX_LEVEL) {
+            initLevel();
+        } else {
+            Room.INSTANCE.clear();
+            Room.INSTANCE.tick();
+            GameManager.INSTANCE.switchGameState();
 
-        initLevel();
+            Room.INSTANCE.tick();
+        }
     }
 
     private static void placeBasics() {

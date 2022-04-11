@@ -1,6 +1,5 @@
-lose at zero lives
-end game at level x
-
+congrats message
+log everything
 
 falling bonuses
 LengthenPaddleBrick

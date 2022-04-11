@@ -34,12 +34,13 @@ public enum Menu implements Drawable, KeyListener {
                     TEXT_X, GameConst.HEIGHT / 2 - MAIN_SIZE * 2);
         }
 
-        g.setColor(Color.BLUE);
-        String title = String.format(MAIN_MESSAGE, Game.level);
+        g.setColor(Game.level >= GameConst.MAX_LEVEL ? Color.MAGENTA : Color.BLUE);
+        String title = Game.level >= GameConst.MAX_LEVEL ? "Last level!" : "Level " + Game.level;
         g.drawString(title, TEXT_X, GameConst.HEIGHT / 2);
 
         font = new Font(Font.MONOSPACED, Font.PLAIN, SECOND_SIZE);
         g.setFont(font);
+        g.setColor(Color.BLUE);
         g.drawString(RESUME_MESSAGE, TEXT_X, RESUME_Y);
         g.drawString(QUIT_MESSAGE, TEXT_X, QUIT_Y);
         g.drawString(KEYS_MESSAGE, TEXT_X, KEYS_Y);
@@ -72,7 +73,6 @@ public enum Menu implements Drawable, KeyListener {
 
 
     private static final int TEXT_X = GameConst.WIDTH / 4;
-    private static final String MAIN_MESSAGE = "LEVEL %d";
     private static final int MAIN_SIZE = 20;
 
     private static final int SECOND_SIZE = 16;
