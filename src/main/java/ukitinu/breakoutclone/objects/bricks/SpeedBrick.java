@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 
 @Getter
 public final class SpeedBrick extends AbstractBrick {
-    private static final double SPEED_FAST = 0.7;
+    private static final double SPEED_FAST = 0.5;
     private static final double SPEED_SLOW = -0.3;
     private static final int SCORE_FAST = 3;
     private static final int SCORE_SLOW = 1;

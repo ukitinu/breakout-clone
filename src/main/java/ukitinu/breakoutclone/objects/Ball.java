@@ -16,10 +16,10 @@ public final class Ball extends MovingGameObject {
     public static final int WIDTH = 16;
     private static final int HEIGHT = 16;
     private static final Random RANDOM = new Random();
-    private static final int[] X_VEL = {-3, 3};
-    public static final int MIN_SPEED = 3;
-    private static final int MAX_SPEED = 7;
-    private static final int START_SPEED = 3;
+    private static final double[] X_VEL = {-3, -2.7, 2.7, 3};
+    public static final double MIN_SPEED = 2.5;
+    private static final double MAX_SPEED = 6.5;
+    private static final double START_SPEED = 3;
     private static final ObjectType[] OBSTACLES = {ObjectType.BRICK, ObjectType.PADDLE, ObjectType.FAKE_PADDLE};
 
     public Ball(int x, int y) {
@@ -53,7 +53,9 @@ public final class Ball extends MovingGameObject {
     }
 
     public void changeAbsoluteSpeedBy(double val) {
+        val /= 2; // split between x and y
         velY = velY > 0 ? Utils.minMax(MIN_SPEED, velY + val, MAX_SPEED) : Utils.minMax(-MAX_SPEED, velY - val, -MIN_SPEED);
+        velX = velX > 0 ? Utils.minMax(MIN_SPEED, velX + val, MAX_SPEED) : Utils.minMax(-MAX_SPEED, velX - val, -MIN_SPEED);
     }
 
     private void checkCollision() {

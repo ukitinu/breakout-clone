@@ -12,6 +12,14 @@ public enum BrickType {
     SLOW(SpeedBrick::slowBrick, 0.04, 1),
     WALL(WallBrick::new, 0.1, 1),
     FAKE_PADDLE(FakePaddleBrick::new, 0.05, 2);
+    /*//    SIMPLE(SimpleBrick::new, 1, 10),
+    SIMPLE(SimpleBrick::new, 0.01, 1),
+    FAST(SpeedBrick::fastBrick, 0.5, 10),
+    //    FAST(SpeedBrick::fastBrick, 0.06, 1),
+    SLOW(SpeedBrick::slowBrick, 0.5, 10),
+    //    SLOW(SpeedBrick::slowBrick, 0.04, 1),
+    WALL(WallBrick::new, 0.1, 1),
+    FAKE_PADDLE(FakePaddleBrick::new, 0.05, 2);*/
 
     private static final Random RANDOM = new Random();
 

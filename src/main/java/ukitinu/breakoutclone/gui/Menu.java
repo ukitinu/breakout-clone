@@ -29,9 +29,9 @@ public enum Menu implements Drawable, KeyListener {
         if (Game.lifeLost) {
             g.setColor(Color.CYAN);
             g.drawString(Game.lives < GameConst.MAX_LIVES ? "Life lost!" : "Game lost!",
-                    TEXT_X, GameConst.HEIGHT / 3);
+                    TEXT_X, GameConst.HEIGHT / 2 - MAIN_SIZE * 3);
             g.drawString(Game.lives < GameConst.MAX_LIVES ? "Level restarted and score reset" : "Full reset",
-                    TEXT_X, GameConst.HEIGHT / 3 + MAIN_SIZE);
+                    TEXT_X, GameConst.HEIGHT / 2 - MAIN_SIZE * 2);
         }
 
         g.setColor(Color.BLUE);

@@ -13,7 +13,7 @@ public final class Paddle extends MovingGameObject {
     private static final int SIDE_WIDTH = 64 / 8;
     public static final int WIDTH = SIDE_WIDTH * 8;
     public static final int HEIGHT = 6;
-    private static final int DEFAULT_SPEED = 4;
+    private static final double DEFAULT_SPEED = 4.5;
 
     public Paddle(int x, int y) {
         super(x, y, WIDTH, HEIGHT, ObjectType.PADDLE);
