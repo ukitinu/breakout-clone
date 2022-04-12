@@ -5,6 +5,7 @@ import ukitinu.breakoutclone.game.Game;
 
 import java.util.Random;
 import java.util.function.BiFunction;
+import java.util.random.RandomGenerator;
 
 public enum BrickType {
     SIMPLE(SimpleBrick::new, 1, 10),
@@ -21,7 +22,7 @@ public enum BrickType {
     WALL(WallBrick::new, 0.1, 1),
     FAKE_PADDLE(FakePaddleBrick::new, 0.05, 2);*/
 
-    private static final Random RANDOM = new Random();
+    private static final RandomGenerator RANDOM = new Random();
 
     private final BiFunction<Integer, Integer, ? extends Brick> constructor;
     private final double ratio;
@@ -46,16 +47,12 @@ public enum BrickType {
     }
 
     boolean isOk(int row, int column, int rows, int columns) {
-        switch (this) {
-            case WALL:
-                return row > 0 && column > 0 && column < columns - 1;
-            case SLOW:
-                return row < rows - 1;
-            case FAKE_PADDLE:
-                return row <= 1 && row < rows - 1;
-            default:
-                return true;
-        }
+        return switch (this) {
+            case WALL -> row > 0 && column > 0 && column < columns - 1;
+            case SLOW -> row < rows - 1;
+            case FAKE_PADDLE -> row <= 1 && row < rows - 1;
+            default -> true;
+        };
     }
 
     static BrickType random() {

@@ -112,7 +112,7 @@ class GameThread extends Canvas implements Runnable {
 
     private void controlFps() {
         timer += 1000;
-        LOG.info("FPS: {}, millisWait: {}", fps, millisWait);
+        if (GameConst.SHOW_FPS) LOG.info("FPS: {}, millisWait: {}", fps, millisWait);
 
         if (fps < TARGET_FPS_LOW) {
             if (millisCounter <= -MILLIS_COUNTER_MAX) {

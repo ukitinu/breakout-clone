@@ -44,38 +44,32 @@ public final class SpeedBrick extends AbstractBrick {
 
     static SpeedBrick fastBrick(int x, int y) {
         SpeedBrick fastBrick = new SpeedBrick(x, y, SPEED_FAST, SCORE_FAST);
-        fastBrick.drawer = new Consumer<Graphics>() {
-            @Override
-            public void accept(Graphics g) {
-                g.setColor(Color.RED);
-                g.fillPolygon(
-                        new int[]{fastBrick.getXCentre() - 2 * fastBrick.getXUnit(),
-                                fastBrick.getXCentre() - 2 * fastBrick.getXUnit(),
-                                fastBrick.getXCentre() + 2 * fastBrick.getXUnit()},
-                        new int[]{fastBrick.getYCentre() - 2 * fastBrick.getYUnit(),
-                                fastBrick.getYCentre() + 2 * fastBrick.getYUnit(),
-                                fastBrick.getYCentre()},
-                        3);
-            }
+        fastBrick.drawer = g -> {
+            g.setColor(Color.RED);
+            g.fillPolygon(
+                    new int[]{fastBrick.getXCentre() - 2 * fastBrick.getXUnit(),
+                            fastBrick.getXCentre() - 2 * fastBrick.getXUnit(),
+                            fastBrick.getXCentre() + 2 * fastBrick.getXUnit()},
+                    new int[]{fastBrick.getYCentre() - 2 * fastBrick.getYUnit(),
+                            fastBrick.getYCentre() + 2 * fastBrick.getYUnit(),
+                            fastBrick.getYCentre()},
+                    3);
         };
         return fastBrick;
     }
 
     static SpeedBrick slowBrick(int x, int y) {
         SpeedBrick slowBrick = new SpeedBrick(x, y, SPEED_SLOW, SCORE_SLOW);
-        slowBrick.drawer = new Consumer<Graphics>() {
-            @Override
-            public void accept(Graphics g) {
-                g.setColor(Color.GREEN);
-                g.fillPolygon(
-                        new int[]{slowBrick.getXCentre() - 2 * slowBrick.getXUnit(),
-                                slowBrick.getXCentre() + 2 * slowBrick.getXUnit(),
-                                slowBrick.getXCentre() + 2 * slowBrick.getXUnit()},
-                        new int[]{slowBrick.getYCentre(),
-                                slowBrick.getYCentre() + 2 * slowBrick.getYUnit(),
-                                slowBrick.getYCentre() - 2 * slowBrick.getYUnit()},
-                        3);
-            }
+        slowBrick.drawer = g -> {
+            g.setColor(Color.GREEN);
+            g.fillPolygon(
+                    new int[]{slowBrick.getXCentre() - 2 * slowBrick.getXUnit(),
+                            slowBrick.getXCentre() + 2 * slowBrick.getXUnit(),
+                            slowBrick.getXCentre() + 2 * slowBrick.getXUnit()},
+                    new int[]{slowBrick.getYCentre(),
+                            slowBrick.getYCentre() + 2 * slowBrick.getYUnit(),
+                            slowBrick.getYCentre() - 2 * slowBrick.getYUnit()},
+                    3);
         };
         return slowBrick;
     }

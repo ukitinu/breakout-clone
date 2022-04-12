@@ -13,13 +13,14 @@ import ukitinu.breakoutclone.gui.HUD;
 import java.awt.*;
 import java.util.List;
 import java.util.Random;
+import java.util.random.RandomGenerator;
 
 public final class Ball extends MovingGameObject {
     private static final Logger LOG = LogManager.getLogger(Ball.class);
 
     public static final int WIDTH = 16;
     private static final int HEIGHT = 16;
-    private static final Random RANDOM = new Random();
+    private static final RandomGenerator RANDOM = new Random();
     private static final double[] X_VEL = {-3, -2.7, 2.7, 3};
     public static final double MIN_SPEED = 2.5;
     private static final double MAX_SPEED = 6.5;
