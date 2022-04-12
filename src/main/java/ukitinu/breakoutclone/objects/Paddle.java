@@ -1,15 +1,20 @@
 package ukitinu.breakoutclone.objects;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ukitinu.breakoutclone.ObjectType;
 import ukitinu.breakoutclone.Utils;
 import ukitinu.breakoutclone.collision.Collidable;
 import ukitinu.breakoutclone.collision.Collision;
 import ukitinu.breakoutclone.game.GameConst;
+import ukitinu.breakoutclone.gui.Menu;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public final class Paddle extends MovingGameObject {
+    private static final Logger LOG = LogManager.getLogger(Paddle.class);
+
     private static final int SIDE_WIDTH = 64 / 8;
     public static final int WIDTH = SIDE_WIDTH * 8;
     public static final int HEIGHT = 6;
@@ -39,9 +44,16 @@ public final class Paddle extends MovingGameObject {
         if (basicCollision == Collision.NONE) return basicCollision;
         Rectangle r = target.getCollision();
         int xMiddle = r.x + (r.width + 1) / 2;
-        if (xMiddle <= x + SIDE_WIDTH) return Collision.LEFT_SIDE;
-        if (xMiddle >= x + SIDE_WIDTH * 7) return Collision.RIGHT_SIDE;
-        return Collision.HORIZONTAL;
+        Collision collision;
+        if (xMiddle <= x + SIDE_WIDTH) {
+            collision = Collision.LEFT_SIDE;
+        } else if (xMiddle >= x + SIDE_WIDTH * 7) {
+            collision = Collision.RIGHT_SIDE;
+        } else {
+            collision = Collision.HORIZONTAL;
+        }
+        LOG.debug("{} collision with {}", collision, target);
+        return collision;
     }
 
     public void onKeyPressed(int keyCode) {

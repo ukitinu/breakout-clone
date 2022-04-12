@@ -33,18 +33,23 @@ class GameThread extends Canvas implements Runnable {
     private GameState state;
 
     GameThread() {
+        LOG.debug("Adding key listener: {}", KeyListener.class.getSimpleName());
         addKeyListener(new KeyListener());
+        LOG.debug("Adding key listener: {}", Menu.class.getSimpleName());
         addKeyListener(Menu.INSTANCE);
 
+        LOG.debug("Creating game window");
         this.window = new Window(GameConst.WIDTH, GameConst.HEIGHT, this);
     }
 
     void start() {
+        LOG.debug("Executing first tick");
         this.state = GameState.PLAY;
         tick();
         this.state = GameState.PAUSE;
         window.setTitle();
 
+        LOG.debug("Starting game thread");
         thread = new Thread(this);
         thread.start();
         running = true;
@@ -52,18 +57,18 @@ class GameThread extends Canvas implements Runnable {
     }
 
     private void stop() {
-        synchronized (this) {
-            try {
-                thread.join();
-                running = false;
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                throw new IllegalThreadStateException("GameThread::stop interrupted");
-            }
+        try {
+            LOG.debug("Stopping game thread");
+            thread.join();
+            running = false;
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new IllegalThreadStateException("GameThread::stop interrupted");
         }
     }
 
     void switchState() {
+        LOG.debug("Switching game state from {}", state);
         if (state == GameState.PAUSE) {
             state = GameState.PLAY;
         } else if (state == GameState.PLAY) {
@@ -111,6 +116,7 @@ class GameThread extends Canvas implements Runnable {
 
         if (fps < TARGET_FPS_LOW) {
             if (millisCounter <= -MILLIS_COUNTER_MAX) {
+                LOG.debug("Decreasing milliseconds of wait");
                 millisWait--;
                 millisCounter = 0;
             } else {
@@ -118,6 +124,7 @@ class GameThread extends Canvas implements Runnable {
             }
         } else if (fps > TARGET_FPS_HIGH) {
             if (millisCounter >= MILLIS_COUNTER_MAX) {
+                LOG.debug("Increasing milliseconds of wait");
                 millisWait++;
                 millisCounter = 0;
             } else {

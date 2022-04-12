@@ -1,8 +1,12 @@
 package ukitinu.breakoutclone.game;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ukitinu.breakoutclone.Room;
 
 public final class Game {
+    private static final Logger LOG = LogManager.getLogger(Game.class);
+
     public static int level;
     public static int score;
     public static int lives;
@@ -17,6 +21,7 @@ public final class Game {
     }
 
     private static void init(boolean lost) {
+        LOG.debug("Initialising game");
         level = 1;
         score = 0;
         lives = GameConst.MAX_LIVES;
@@ -56,12 +61,14 @@ public final class Game {
     }
 
     private static void placeBasics() {
+        LOG.debug("Populating window");
         Spawner.INSTANCE.placeBricks(level * 2);
         Spawner.INSTANCE.placeBall();
         Spawner.INSTANCE.placePaddle();
     }
 
     private static void initLevel() {
+        LOG.debug("Initialising level " + level);
         Room.INSTANCE.clear();
         Room.INSTANCE.tick();
 

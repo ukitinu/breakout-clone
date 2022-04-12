@@ -1,5 +1,7 @@
 package ukitinu.breakoutclone.objects;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ukitinu.breakoutclone.ObjectType;
 import ukitinu.breakoutclone.Room;
 import ukitinu.breakoutclone.Utils;
@@ -13,6 +15,8 @@ import java.util.List;
 import java.util.Random;
 
 public final class Ball extends MovingGameObject {
+    private static final Logger LOG = LogManager.getLogger(Ball.class);
+
     public static final int WIDTH = 16;
     private static final int HEIGHT = 16;
     private static final Random RANDOM = new Random();
@@ -63,6 +67,7 @@ public final class Ball extends MovingGameObject {
         for (GameObject o : collidables) {
             Collision collision = o.findCollision(this);
             if (collision != Collision.NONE) {
+                LOG.debug("{} collision with {}", collision, o);
                 o.onHit();
                 if (o instanceof Paddle) {
                     velY = -velY;

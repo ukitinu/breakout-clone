@@ -61,11 +61,11 @@ public enum Menu implements Drawable, KeyListener {
         int key = e.getExtendedKeyCode();
 
         if (key == KeyEvent.VK_ESCAPE) {
-            LOG.info("ESC");
+            LOG.debug("ESC");
             System.exit(0);
 
         } else if (key == KeyEvent.VK_SPACE) {
-            LOG.info("SPACEBAR");
+            LOG.debug("SPACEBAR");
             Game.lifeLost = false;
             GameManager.INSTANCE.switchGameState();
         }

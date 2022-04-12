@@ -1,5 +1,7 @@
 package ukitinu.breakoutclone.objects;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ukitinu.breakoutclone.ObjectType;
 import ukitinu.breakoutclone.Room;
 import ukitinu.breakoutclone.game.GameConst;
@@ -11,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FakePaddle extends MovingGameObject implements ActionListener, HasScore {
+    private static final Logger LOG = LogManager.getLogger(FakePaddle.class);
+
     private static final int WIDTH = Paddle.WIDTH / 2;
     private static final int HEIGHT = Paddle.HEIGHT;
     private static final int FADE_OUT_MILLIS = 5_000;
@@ -61,6 +65,7 @@ public class FakePaddle extends MovingGameObject implements ActionListener, HasS
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        LOG.debug("FakePaddle fading out");
         if (alpha > 0) alpha = Math.max(0, alpha - FADE_OUT);
         else Room.INSTANCE.remove(this);
     }

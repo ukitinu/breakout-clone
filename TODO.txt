@@ -1,5 +1,4 @@
 congrats message
-log everything
 
 falling bonuses
 LengthenPaddleBrick

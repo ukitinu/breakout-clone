@@ -6,7 +6,7 @@
                 fileName="./logs/breakout-clone.log"
                 filePattern="./logs/breakout-clone.log.%d{yyyy-MM-dd}.%i.gz"
                 ignoreExceptions="false">
-            <PatternLayout pattern="%d{ISO8601} : %-5level : %-10c{1} : %m%n"/>
+            <PatternLayout pattern="%d{ISO8601} : %pid : %-6relative ms : %-5level : %-16logger{2} : %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1"/>
                 <SizeBasedTriggeringPolicy size="4 MB"/>
@@ -17,12 +17,11 @@
                 name="LogToConsole"
                 target="SYSTEM_OUT"
                 ignoreExceptions="false">
-            <PatternLayout pattern="%d{ISO8601} : %-5level : %-10c{1} : %m%n"/>
-            <!--            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>-->
+            <PatternLayout pattern="%d{ISO8601} : %pid : %-6relative ms : %-5level : %-16logger{2} : %m%n"/>
         </Console>
     </Appenders>
     <Loggers>
-        <Root level="info">
+        <Root level="DEBUG">
             <AppenderRef ref="rollingFile"/>
             <AppenderRef ref="LogToConsole"/>
         </Root>

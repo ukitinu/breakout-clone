@@ -6,7 +6,7 @@
 
     <groupId>ukitinu</groupId>
     <artifactId>breakout-clone</artifactId>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
 
     <name>breakout-clone</name>
     <url>https://github.com/ukitinu/breakout-clone</url>
@@ -20,7 +20,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mainClass>ukitinu.breakoutclone.Main</mainClass>
         <!-- DEPENDENCIES -->
-        <versions.log4j>2.17.1</versions.log4j>
+        <versions.log4j>2.17.2</versions.log4j>
         <versions.lombok>1.18.22</versions.lombok>
         <versions.junit>5.8.2</versions.junit>
         <!-- PLUGINS -->
@@ -44,7 +44,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${versions.lombok}</version>
-            <optional>true</optional>
+            <scope>provided</scope>
         </dependency>
         <!-- TEST -->
         <dependency>
