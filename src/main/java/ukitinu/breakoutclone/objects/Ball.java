@@ -68,7 +68,7 @@ public final class Ball extends MovingGameObject {
         for (GameObject o : collidables) {
             Collision collision = o.findCollision(this);
             if (collision != Collision.NONE) {
-                LOG.debug("{} collision with {}", collision, o);
+                LOG.info("{} collision with {}", collision, o);
                 o.onHit();
                 if (o instanceof Paddle) {
                     velY = -velY;

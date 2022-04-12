@@ -51,7 +51,7 @@ public final class Paddle extends MovingGameObject {
         } else {
             collision = Collision.HORIZONTAL;
         }
-        LOG.debug("{} collision with {}", collision, target);
+        LOG.info("{} collision with {}", collision, target);
         return collision;
     }
 
