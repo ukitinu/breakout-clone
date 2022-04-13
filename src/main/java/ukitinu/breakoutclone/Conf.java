@@ -18,7 +18,8 @@ public enum Conf {
     FPS_TARGET("fps.desired", "60"),
     FPS_MAX("fps.max", "80"),
     MAX_LIVES("max_lives", "3"),
-    MAX_LEVEL("max_level", "2");
+    MAX_LEVEL("max_level", "2"),
+    START_SPEED("start_speed", "3.3");
 
     private final String value;
 
@@ -37,6 +38,10 @@ public enum Conf {
 
     public boolean bool() {
         return Boolean.parseBoolean(value);
+    }
+
+    public double dbl() {
+        return Double.parseDouble(value);
     }
 
     private static final class Reader {
