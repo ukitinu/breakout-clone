@@ -14,6 +14,7 @@ import java.util.Properties;
 public enum Conf {
     LOG_FPS("log.fps", "false"),
     LOG_PHYSICS("log.physics", "true"),
+    LOG_BALL("log.ball", "true"),
     FPS_TARGET("fps.desired", "60"),
     FPS_MAX("fps.max", "80"),
     MAX_LIVES("max_lives", "3"),

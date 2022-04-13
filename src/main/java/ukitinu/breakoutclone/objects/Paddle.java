@@ -50,7 +50,7 @@ public final class Paddle extends MovingGameObject {
         } else if (xMiddle >= x + SIDE_WIDTH * 7) {
             collision = Collision.RIGHT_SIDE;
         } else {
-            collision = Collision.HORIZONTAL;
+            collision = Collision.VERTICAL;
         }
         if(Conf.LOG_PHYSICS.bool()) LOG.info("{} collision with {}", collision, target);
         return collision;

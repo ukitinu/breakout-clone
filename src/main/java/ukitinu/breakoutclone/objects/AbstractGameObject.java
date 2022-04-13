@@ -29,4 +29,9 @@ public abstract class AbstractGameObject implements GameObject {
     public Rectangle getCollision() {
         return new Rectangle(x, y, width, height);
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s(%d, %d)", objectType, x, y);
+    }
 }

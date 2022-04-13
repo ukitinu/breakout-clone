@@ -4,17 +4,17 @@ import lombok.Getter;
 
 public enum Collision {
     NONE(false),
-    VERTICAL(true),
-    HORIZONTAL(false),
+    HORIZONTAL(true), // generic, when the intersection geometry width is larger
+    VERTICAL(false), // generic, when the intersection geometry height is larger
     LEFT_SIDE(true),
     RIGHT_SIDE(true);
 
-    Collision(boolean isVertical) {
-        this.isVertical = isVertical;
+    Collision(boolean isHorizontal) {
+        this.isHorizontal = isHorizontal;
     }
 
     @Getter
-    private final boolean isVertical;
+    private final boolean isHorizontal;
 
 }
 

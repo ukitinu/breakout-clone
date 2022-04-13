@@ -32,6 +32,7 @@ public final class Ball extends MovingGameObject {
         super(x, y, WIDTH, HEIGHT, ObjectType.BALL);
         setVelX(X_VEL[RANDOM.nextInt(X_VEL.length)]);
         setVelY(-START_SPEED);
+        if (Conf.LOG_BALL.bool()) LOG.info("Ball created with velocity {},{}", velX, velY);
     }
 
     @Override
@@ -39,13 +40,16 @@ public final class Ball extends MovingGameObject {
         checkCollision();
 
         if (y >= GameConst.HEIGHT - height * 3) {
-            velY = -Math.abs(velY);
+            if (Conf.LOG_PHYSICS.bool()) LOG.info("Ball fell");
             Game.loseLife();
         } else if (y <= HUD.HEIGHT) {
+            if (Conf.LOG_PHYSICS.bool()) LOG.info("Top bounce");
             velY = Math.abs(velY);
         } else if (x <= 0) {
+            if (Conf.LOG_PHYSICS.bool()) LOG.info("Left bounce");
             velX = Math.abs(velX);
         } else if (x >= GameConst.WIDTH - width * 2) {
+            if (Conf.LOG_PHYSICS.bool()) LOG.info("Right bounce");
             velX = -Math.abs(velX);
         }
 
@@ -59,8 +63,10 @@ public final class Ball extends MovingGameObject {
     }
 
     public void changeAbsoluteSpeedBy(double val) {
+        if (Conf.LOG_BALL.bool()) LOG.info("Speed change before velX={}, velY={}", velX, velY);
         velY = velY > 0 ? Utils.minMax(MIN_SPEED, velY + val, MAX_SPEED) : Utils.minMax(-MAX_SPEED, velY - val, -MIN_SPEED);
         velX = velX > 0 ? Utils.minMax(MIN_SPEED, velX + val, MAX_SPEED) : Utils.minMax(-MAX_SPEED, velX - val, -MIN_SPEED);
+        if (Conf.LOG_BALL.bool()) LOG.info("Speed change after velX={}, velY={}", velX, velY);
     }
 
     private void checkCollision() {
@@ -70,15 +76,17 @@ public final class Ball extends MovingGameObject {
             if (collision != Collision.NONE) {
                 if (Conf.LOG_PHYSICS.bool()) LOG.info("{} collision with {}", collision, o);
                 o.onHit();
+                if (Conf.LOG_BALL.bool()) LOG.info("Paddle bounce before velX={}, velY={}", velX, velY);
                 if (o instanceof Paddle) {
                     velY = -velY;
                     if (collision == Collision.LEFT_SIDE && velX > 0) velX = -velX;
                     else if (collision == Collision.RIGHT_SIDE && velX < 0) velX = -velX;
                     adjustY();
                 } else {
-                    if (collision.isVertical()) velY = -velY;
+                    if (collision.isHorizontal()) velY = -velY;
                     else velX = -velX;
                 }
+                if (Conf.LOG_BALL.bool()) LOG.info("Paddle bounce after velX={}, velY={}", velX, velY);
                 break;
             }
         }
