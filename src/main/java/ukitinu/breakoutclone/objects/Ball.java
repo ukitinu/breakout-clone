@@ -2,6 +2,7 @@ package ukitinu.breakoutclone.objects;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ukitinu.breakoutclone.Conf;
 import ukitinu.breakoutclone.ObjectType;
 import ukitinu.breakoutclone.Room;
 import ukitinu.breakoutclone.Utils;
@@ -21,10 +22,10 @@ public final class Ball extends MovingGameObject {
     public static final int WIDTH = 16;
     private static final int HEIGHT = 16;
     private static final RandomGenerator RANDOM = new Random();
-    private static final double[] X_VEL = {-3, -2.7, 2.7, 3};
+    private static final double[] X_VEL = {-3, -2.8, -2.6, -2.4, 2.4, 2.6, 2.8, 3};
     public static final double MIN_SPEED = 2.5;
-    private static final double MAX_SPEED = 6.5;
-    private static final double START_SPEED = 3;
+    private static final double MAX_SPEED = 6;
+    private static final double START_SPEED = 3.2;
     private static final ObjectType[] OBSTACLES = {ObjectType.BRICK, ObjectType.PADDLE, ObjectType.FAKE_PADDLE};
 
     public Ball(int x, int y) {
@@ -58,7 +59,6 @@ public final class Ball extends MovingGameObject {
     }
 
     public void changeAbsoluteSpeedBy(double val) {
-        val /= 2; // split between x and y
         velY = velY > 0 ? Utils.minMax(MIN_SPEED, velY + val, MAX_SPEED) : Utils.minMax(-MAX_SPEED, velY - val, -MIN_SPEED);
         velX = velX > 0 ? Utils.minMax(MIN_SPEED, velX + val, MAX_SPEED) : Utils.minMax(-MAX_SPEED, velX - val, -MIN_SPEED);
     }
@@ -68,7 +68,7 @@ public final class Ball extends MovingGameObject {
         for (GameObject o : collidables) {
             Collision collision = o.findCollision(this);
             if (collision != Collision.NONE) {
-                LOG.info("{} collision with {}", collision, o);
+                if (Conf.LOG_PHYSICS.bool()) LOG.info("{} collision with {}", collision, o);
                 o.onHit();
                 if (o instanceof Paddle) {
                     velY = -velY;

@@ -13,6 +13,7 @@ import java.util.Properties;
 
 public enum Conf {
     LOG_FPS("log.fps", "false"),
+    LOG_PHYSICS("log.physics", "true"),
     FPS_TARGET("fps.desired", "60"),
     FPS_MAX("fps.max", "80"),
     MAX_LIVES("max_lives", "3"),
@@ -42,6 +43,7 @@ public enum Conf {
         private static final String PROP_FILE = "breakout_clone.properties";
         private static final String CONTENT = """
                 log.fps=false
+                log.physics=true
                                 
                 fps.desired=60
                 fps.max=80

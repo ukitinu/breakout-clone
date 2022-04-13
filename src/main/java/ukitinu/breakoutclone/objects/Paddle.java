@@ -2,6 +2,7 @@ package ukitinu.breakoutclone.objects;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ukitinu.breakoutclone.Conf;
 import ukitinu.breakoutclone.ObjectType;
 import ukitinu.breakoutclone.Utils;
 import ukitinu.breakoutclone.collision.Collidable;
@@ -51,7 +52,7 @@ public final class Paddle extends MovingGameObject {
         } else {
             collision = Collision.HORIZONTAL;
         }
-        LOG.info("{} collision with {}", collision, target);
+        if(Conf.LOG_PHYSICS.bool()) LOG.info("{} collision with {}", collision, target);
         return collision;
     }
 
