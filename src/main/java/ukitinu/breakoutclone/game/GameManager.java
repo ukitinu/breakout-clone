@@ -13,4 +13,8 @@ public enum GameManager {
     public void switchGameState() {
         THREAD.switchState();
     }
+
+    public void setGameState(GameState state) {
+        THREAD.setState(state);
+    }
 }

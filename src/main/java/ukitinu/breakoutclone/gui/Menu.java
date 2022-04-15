@@ -42,7 +42,7 @@ public enum Menu implements Drawable, KeyListener {
         font = new Font(Font.MONOSPACED, Font.PLAIN, SECOND_SIZE);
         g.setFont(font);
         g.setColor(Color.BLUE);
-        g.drawString(RESUME_MESSAGE, TEXT_X, RESUME_Y);
+        g.drawString(Game.hasWon() ? RESUME_MESSAGE_WON : RESUME_MESSAGE, TEXT_X, RESUME_Y);
         g.drawString(QUIT_MESSAGE, TEXT_X, QUIT_Y);
         g.drawString(KEYS_MESSAGE, TEXT_X, KEYS_Y);
     }
@@ -64,11 +64,14 @@ public enum Menu implements Drawable, KeyListener {
         if (key == KeyEvent.VK_ESCAPE) {
             LOG.debug("ESC");
             System.exit(0);
-
-        } else if (key == KeyEvent.VK_SPACE) {
+        } else if (key == KeyEvent.VK_SPACE && !Game.hasWon()) {
             LOG.debug("SPACEBAR");
             Game.clearAlert();
             GameManager.INSTANCE.switchGameState();
+        } else if (key == KeyEvent.VK_SPACE) {
+            LOG.debug("SPACEBAR");
+            Game.clearAlert();
+            Game.init();
         }
     }
 
@@ -79,6 +82,7 @@ public enum Menu implements Drawable, KeyListener {
     private static final int SECOND_SIZE = 16;
 
     private static final String RESUME_MESSAGE = "[SPACE] - (UN)PAUSE";
+    private static final String RESUME_MESSAGE_WON = "[SPACE] - START NEW GAME";
     private static final int RESUME_Y = GameConst.HEIGHT / 2 + 48;
 
     private static final String QUIT_MESSAGE = "[ESC]   - QUIT";

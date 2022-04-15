@@ -22,14 +22,17 @@ public final class Game {
      */
     private static final List<String> alert = new ArrayList<>();
 
+    private static boolean victory = false;
+
     private Game() {
     }
 
-    static void init() {
+    public static void init() {
         LOG.debug("Initialising game");
         level = 1;
         score = 0;
         lives = GameConst.MAX_LIVES;
+        victory = false;
 
         LOG.debug("Initialising level " + level);
         renewGame(Game::placeBasics);
@@ -48,8 +51,13 @@ public final class Game {
     }
 
     public static void setAlert(Collection<String> alert) {
+        clearAlert();
         Game.alert.addAll(alert);
-        GameManager.INSTANCE.switchGameState();
+        GameManager.INSTANCE.setGameState(GameState.PAUSE);
+    }
+
+    public static boolean hasWon() {
+        return victory;
     }
 
     public static void loseLife() {
@@ -59,7 +67,6 @@ public final class Game {
         if (lives > 0) {
             LOG.debug("Initialising level " + level);
             renewGame(Game::placeBasics);
-
             setAlert(List.of("Life lost!", "Level restarted and score reset"));
         } else {
             init();
@@ -81,7 +88,7 @@ public final class Game {
             renewGame(Game::placeBasics);
             setAlert(List.of("Level cleared!", "Starting new level"));
         } else {
-            renewGame(null);
+            victory = true;
             setAlert(List.of("Congratulations!", "You won with a score of " + score));
         }
     }

@@ -76,6 +76,10 @@ class GameThread extends Canvas implements Runnable {
         }
     }
 
+    void setState(GameState state) {
+        this.state = state;
+    }
+
     @Override
     public void run() {
         long prev = System.nanoTime();
@@ -140,10 +144,13 @@ class GameThread extends Canvas implements Runnable {
         if (state == GameState.PLAY) {
             Room.INSTANCE.tick();
             HUD.INSTANCE.tick();
+        } else if (state == GameState.PAUSE && !Game.hasWon()) {
+            Menu.INSTANCE.tick();
         } else if (state == GameState.PAUSE) {
             Menu.INSTANCE.tick();
+            Room.INSTANCE.tick();
         }
-        if (Room.INSTANCE.countBricks() <= 0) {
+        if (Room.INSTANCE.countBricks() <= 0 && !Game.hasWon()) {
             Game.nextLevel();
             window.setTitle();
         }

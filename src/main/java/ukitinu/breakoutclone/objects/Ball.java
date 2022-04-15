@@ -40,7 +40,8 @@ public final class Ball extends MovingGameObject {
 
         if (y >= GameConst.HEIGHT - height * 3) {
             if (Conf.LOG_PHYSICS.bool()) LOG.info("Ball fell");
-            Game.loseLife();
+            if (!Game.hasWon()) Game.loseLife();
+            velY = -Math.abs(velY); // never reached in normal gameplay, used in debugging and after winning the game
         } else if (y <= HUD.HEIGHT) {
             if (Conf.LOG_PHYSICS.bool()) LOG.info("Top bounce");
             velY = Math.abs(velY);
