@@ -1,9 +1,13 @@
 package ukitinu.breakoutclone;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class KeyListener extends KeyAdapter {
+    private static final Logger LOG = LogManager.getLogger(KeyListener.class);
 
     private final Room room = Room.INSTANCE;
 
@@ -21,6 +25,7 @@ public class KeyListener extends KeyAdapter {
         int key = e.getExtendedKeyCode();
 
         if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT) {
+            if (Conf.LOG_KEYS.bool()) LOG.info("[{}] key released", key == KeyEvent.VK_LEFT ? "LEFT" : "RIGHT");
             room.getPlayerPaddle().onKeyReleased(key);
         }
     }

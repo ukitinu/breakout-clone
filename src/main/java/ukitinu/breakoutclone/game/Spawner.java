@@ -2,6 +2,7 @@ package ukitinu.breakoutclone.game;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ukitinu.breakoutclone.Conf;
 import ukitinu.breakoutclone.Room;
 import ukitinu.breakoutclone.gui.HUD;
 import ukitinu.breakoutclone.objects.Ball;
@@ -30,17 +31,17 @@ public enum Spawner {
 
 
     public void placeBall() {
-        LOG.debug("Placing ball at {},{}", BALL_SPAWN_X, BALL_SPAWN_Y);
+        if (Conf.LOG_GAME.bool()) LOG.info("Placing ball at {},{}", BALL_SPAWN_X, BALL_SPAWN_Y);
         Room.INSTANCE.add(new Ball(BALL_SPAWN_X, BALL_SPAWN_Y));
     }
 
     public void placePaddle() {
-        LOG.debug("Placing paddle at {},{}", PADDLE_SPAWN_X, PADDLE_SPAWN_Y);
+        if (Conf.LOG_GAME.bool()) LOG.info("Placing paddle at {},{}", PADDLE_SPAWN_X, PADDLE_SPAWN_Y);
         Room.INSTANCE.add(new Paddle(PADDLE_SPAWN_X, PADDLE_SPAWN_Y));
     }
 
     public void placeFakePaddle() {
-        LOG.debug("Placing fake paddle at {},{}", PADDLE_SPAWN_X, FAKE_PADDLE_SPAWN_Y);
+        if (Conf.LOG_GAME.bool()) LOG.info("Placing fake paddle at {},{}", PADDLE_SPAWN_X, FAKE_PADDLE_SPAWN_Y);
         Room.INSTANCE.add(new FakePaddle(PADDLE_SPAWN_X, FAKE_PADDLE_SPAWN_Y));
     }
 
@@ -52,14 +53,14 @@ public enum Spawner {
                 int x = BRICK_SPAWN_X + Brick.WIDTH * column;
                 int y = BRICK_SPAWN_Y + Brick.HEIGHT * row;
                 Brick brick = factory.buildBrick(row, column, x, y);
-                LOG.debug("Placing brick {},{}: {}", row, column, brick.getClass().getSimpleName());
+                if (Conf.LOG_GAME.bool()) LOG.info("Placing brick {},{}: {}", row, column, brick.getClass().getSimpleName());
                 Room.INSTANCE.add(brick);
             }
         }
     }
 
     public void placeModifier(int x, int y) {
-        LOG.debug("Placing modifier at {},{}", x, y);
+        if (Conf.LOG_GAME.bool()) LOG.info("Placing modifier at {},{}", x, y);
         Room.INSTANCE.add(new Modifier(x, y));
     }
 }

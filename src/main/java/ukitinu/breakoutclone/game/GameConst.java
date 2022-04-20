@@ -21,5 +21,4 @@ public final class GameConst {
     /* other */
     public static final int MAX_LIVES = Conf.MAX_LIVES.num();
     public static final int MAX_LEVEL = Conf.MAX_LEVEL.num();
-    public static final boolean SHOW_FPS = Conf.LOG_FPS.bool();
 }

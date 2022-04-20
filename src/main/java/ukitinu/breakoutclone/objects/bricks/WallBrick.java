@@ -1,8 +1,13 @@
 package ukitinu.breakoutclone.objects.bricks;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import ukitinu.breakoutclone.Conf;
+
 import java.awt.*;
 
 public class WallBrick extends AbstractBrick {
+    private static final Logger LOG = LogManager.getLogger(WallBrick.class);
 
     private static final int BRICK_R = 155;
     private static final int BRICK_G = 103;
@@ -23,6 +28,7 @@ public class WallBrick extends AbstractBrick {
 
     @Override
     public void onHit() {
+        if (Conf.LOG_GAME.bool()) LOG.info("WALL{} fading out", this.toString());
         if (alpha > 0) alpha = Math.max(0, alpha - FADE_OUT);
         else super.onHit();
     }

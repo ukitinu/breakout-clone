@@ -2,6 +2,7 @@ package ukitinu.breakoutclone.game;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ukitinu.breakoutclone.Conf;
 import ukitinu.breakoutclone.Room;
 
 import java.util.ArrayList;
@@ -28,13 +29,13 @@ public final class Game {
     }
 
     public static void init() {
-        LOG.debug("Initialising game");
+        LOG.info("Initialising game");
         level = 1;
         score = 0;
         lives = GameConst.MAX_LIVES;
         victory = false;
 
-        LOG.debug("Initialising level " + level);
+        if (Conf.LOG_GAME.bool()) LOG.info("Initialising level {}", level);
         renewGame(Game::placeBasics);
     }
 
@@ -65,10 +66,11 @@ public final class Game {
         score = 0;
 
         if (lives > 0) {
-            LOG.debug("Initialising level " + level);
+            if (Conf.LOG_GAME.bool()) LOG.info("Initialising level {} after loss of life", level);
             renewGame(Game::placeBasics);
             setAlert(List.of("Life lost!", "Level restarted and score reset"));
         } else {
+            LOG.info("Restarting game after all lives lost");
             init();
             setAlert(List.of("Game lost!", "Full reset"));
         }
@@ -84,17 +86,18 @@ public final class Game {
         level++;
 
         if (level <= GameConst.MAX_LEVEL) {
-            LOG.debug("Initialising level " + level);
+            if (Conf.LOG_GAME.bool()) LOG.info("Initialising level {}", level);
             renewGame(Game::placeBasics);
             setAlert(List.of("Level cleared!", "Starting new level"));
         } else {
+            LOG.info("Game won");
             victory = true;
             setAlert(List.of("Congratulations!", "You won with a score of " + score));
         }
     }
 
     private static void placeBasics() {
-        LOG.debug("Populating window");
+        if (Conf.LOG_GAME.bool()) LOG.info("Populating window");
         Spawner.INSTANCE.placeBricks(level * 2);
         Spawner.INSTANCE.placeBall();
         Spawner.INSTANCE.placePaddle();

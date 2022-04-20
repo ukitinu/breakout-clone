@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ukitinu.breakoutclone.Conf;
 import ukitinu.breakoutclone.KeyListener;
 import ukitinu.breakoutclone.Room;
 import ukitinu.breakoutclone.gui.HUD;
@@ -33,23 +34,23 @@ class GameThread extends Canvas implements Runnable {
     private GameState state;
 
     GameThread() {
-        LOG.debug("Adding key listener: {}", KeyListener.class.getSimpleName());
+        if (Conf.LOG_THREAD.bool()) LOG.info("Adding key listener: {}", KeyListener.class.getSimpleName());
         addKeyListener(new KeyListener());
-        LOG.debug("Adding key listener: {}", Menu.class.getSimpleName());
+        if (Conf.LOG_THREAD.bool()) LOG.info("Adding key listener: {}", Menu.class.getSimpleName());
         addKeyListener(Menu.INSTANCE);
 
-        LOG.debug("Creating game window");
+        if (Conf.LOG_THREAD.bool()) LOG.info("Creating game window");
         this.window = new Window(GameConst.WIDTH, GameConst.HEIGHT, this);
     }
 
     void start() {
-        LOG.debug("Executing first tick");
+        if (Conf.LOG_THREAD.bool()) LOG.info("Executing first tick");
         this.state = GameState.PLAY;
         tick();
         this.state = GameState.PAUSE;
         window.setTitle();
 
-        LOG.debug("Starting game thread");
+        if (Conf.LOG_THREAD.bool()) LOG.info("Starting game thread");
         thread = new Thread(this);
         thread.start();
         running = true;
@@ -58,7 +59,7 @@ class GameThread extends Canvas implements Runnable {
 
     private void stop() {
         try {
-            LOG.debug("Stopping game thread");
+            if (Conf.LOG_THREAD.bool()) LOG.info("Stopping game thread");
             thread.join();
             running = false;
         } catch (InterruptedException e) {
@@ -68,7 +69,7 @@ class GameThread extends Canvas implements Runnable {
     }
 
     void switchState() {
-        LOG.debug("Switching game state from {}", state);
+        if (Conf.LOG_THREAD.bool()) LOG.info("Switching game state from {}", state);
         if (state == GameState.PAUSE) {
             state = GameState.PLAY;
         } else if (state == GameState.PLAY) {
@@ -116,20 +117,20 @@ class GameThread extends Canvas implements Runnable {
 
     private void controlFps() {
         timer += 1000;
-        if (GameConst.SHOW_FPS) LOG.info("FPS: {}, millisWait: {}", fps, millisWait);
+        if (Conf.LOG_FPS.bool()) LOG.info("FPS: {}", fps);
 
         if (fps < TARGET_FPS_LOW) {
             if (millisCounter <= -MILLIS_COUNTER_MAX) {
-                LOG.debug("Decreasing milliseconds of wait");
                 millisWait--;
+                if (Conf.LOG_THREAD.bool()) LOG.info("Decreasing millisWait to {}", millisWait);
                 millisCounter = 0;
             } else {
                 millisCounter--;
             }
         } else if (fps > TARGET_FPS_HIGH) {
             if (millisCounter >= MILLIS_COUNTER_MAX) {
-                LOG.debug("Increasing milliseconds of wait");
                 millisWait++;
+                if (Conf.LOG_THREAD.bool()) LOG.info("Increasing millisWait to {}", millisWait);
                 millisCounter = 0;
             } else {
                 millisCounter++;

@@ -2,6 +2,7 @@ package ukitinu.breakoutclone.gui;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ukitinu.breakoutclone.Conf;
 import ukitinu.breakoutclone.Drawable;
 import ukitinu.breakoutclone.game.Game;
 import ukitinu.breakoutclone.game.GameConst;
@@ -62,14 +63,14 @@ public enum Menu implements Drawable, KeyListener {
         int key = e.getExtendedKeyCode();
 
         if (key == KeyEvent.VK_ESCAPE) {
-            LOG.debug("ESC");
+            if (Conf.LOG_KEYS.bool()) LOG.info("[ESC] key pressed, game exit");
             System.exit(0);
         } else if (key == KeyEvent.VK_SPACE && !Game.hasWon()) {
-            LOG.debug("SPACEBAR");
+            if (Conf.LOG_KEYS.bool()) LOG.info("[SPACEBAR] key pressed, game (un)paused");
             Game.clearAlert();
             GameManager.INSTANCE.switchGameState();
         } else if (key == KeyEvent.VK_SPACE) {
-            LOG.debug("SPACEBAR");
+            if (Conf.LOG_KEYS.bool()) LOG.info("[SPACEBAR] key pressed, game restarted");
             Game.clearAlert();
             Game.init();
         }

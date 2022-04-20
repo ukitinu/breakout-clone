@@ -13,8 +13,11 @@ import java.util.Properties;
 
 public enum Conf {
     LOG_FPS("log.fps", "false"),
-    LOG_PHYSICS("log.physics", "true"),
-    LOG_BALL("log.ball", "true"),
+    LOG_PHYSICS("log.physics", "false"),
+    LOG_BALL("log.ball", "false"),
+    LOG_GAME("log.game", "false"),
+    LOG_KEYS("log.keys", "false"),
+    LOG_THREAD("log.thread", "false"),
     FPS_TARGET("fps.desired", "60"),
     FPS_MAX("fps.max", "80"),
     MAX_LIVES("max_lives", "3"),
@@ -48,15 +51,23 @@ public enum Conf {
         private static final Logger LOG = LogManager.getLogger(Reader.class);
         private static final String PROP_FILE = "breakout_clone.properties";
         private static final String CONTENT = """
+                # logging configuration
                 log.fps=false
-                log.physics=true
-                                
+                log.physics=false
+                log.ball=false
+                log.game=false
+                log.keys=false
+                log.thread=false
+                
                 fps.desired=60
                 fps.max=80
-                                
+                
                 max_lives=3
-                max_level=2
-                                
+                max_level=3
+                
+                # float between 3 and 6, ball initial speed
+                start_speed=3.3
+                
                 """;
 
         private static final Properties PROPS = new Properties();
@@ -65,7 +76,7 @@ public enum Conf {
             try (var is = new FileInputStream(PROP_FILE)) {
                 PROPS.load(is);
             } catch (FileNotFoundException e) {
-                LOG.warn(PROP_FILE + " not found, generating default one");
+                LOG.warn("{} not found, generating default one", PROP_FILE);
                 try {
                     Files.writeString(Path.of(PROP_FILE), CONTENT, StandardCharsets.UTF_8);
                     System.exit(0);
@@ -74,7 +85,7 @@ public enum Conf {
                     System.exit(1);
                 }
             } catch (Exception e) {
-                LOG.error("Unable to read " + PROP_FILE + " file: " + e.getMessage());
+                LOG.error("Unable to read {}: {}", PROP_FILE, e.getMessage());
                 System.exit(1);
             }
         }
