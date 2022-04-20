@@ -20,6 +20,13 @@ target/
 *.ipr
 *.iws
 
+### Gradle
+.gradle
+/build/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
 .pre_commit_file_list
 .githooks/pmd-bin-6.34.0/
 
