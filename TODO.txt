@@ -1,9 +1,4 @@
-readme on falling bonuses (readme on todos, maybe)
-test mod_speed config
-add cheat config
-
-
-falling bonuses
+falling bonuses:
 LengthenPaddleBrick
 ShortenPaddleBrick
 EnlargeBallBrick

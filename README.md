@@ -23,17 +23,18 @@ Hitting the ball with the paddle's sides inverts the y-velocity only, hitting it
 ## Configuration
 THe *log.* options control the info being logged, useless when playing, kind of useful when debugging.  
 The two *fps.* configs are probably best left alone, I tinkered with them in the past and 60/80 seems to be the best values.  
-I haven't really tried to change the *max_lives* option, but it should work since it is treated dynamically in the code.  
-The *max_level* config was useful when debugging, and may be increased/decreased to have more/less of a challenge.  
-The *start_speed* config defines the starting **vertical** speed of the ball, which is also increased level by level
-according to *mod_speed*.
+The *max_lives* option changes the number of max (and starting) lives.  
+The *max_level* config may be changed to have a shorter/longer game.  
+The *invincibility* config, if `true`, disables the loss of lives if the ball reaches the bottom.  
+The *ball.start_speed* config defines the starting **vertical** speed of the ball, which is also increased level by level
+according to *ball.mod_speed*.
 
 
 ## A comment on the code
 I started this project because I wanted to create a simple game to test some ideas.  
 Some mechanics are implemented as generically as possible, which is probably one of the reasons (together with a 
-not-very-good game thread/loop) why the game has got plenty of issues, especially in the physics/movement department.  
+not-very-good game thread/loop) why the game has got plenty of issues, especially in the physics/movement department
+(e.g. what happens when the ball collides with multiple bricks at the same time, or the movement speed that depends
+on the frames).  
 When I started coding it, I thought that OOP was the best way to organise and develop a game. With time, I realised my
 mistake and moved away a bit from OOP, which is why the code is not as tidy as I would like.
-
-

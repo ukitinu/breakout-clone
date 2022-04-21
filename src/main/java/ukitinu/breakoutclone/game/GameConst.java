@@ -1,6 +1,7 @@
 package ukitinu.breakoutclone.game;
 
 import ukitinu.breakoutclone.Conf;
+import ukitinu.breakoutclone.Utils;
 
 public final class GameConst {
     private GameConst() {
@@ -19,6 +20,6 @@ public final class GameConst {
     static final long OPTIMAL_TIME = NANOS_SEC / TARGET_FPS;
 
     /* other */
-    public static final int MAX_LIVES = Conf.MAX_LIVES.num();
-    public static final int MAX_LEVEL = Conf.MAX_LEVEL.num();
+    public static final int MAX_LIVES = Utils.minMax(1, Conf.MAX_LIVES.num(), 10);
+    public static final int MAX_LEVEL = Utils.minMax(1, Conf.MAX_LEVEL.num(), 5);
 }

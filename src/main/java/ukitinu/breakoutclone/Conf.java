@@ -21,9 +21,10 @@ public enum Conf {
     FPS_TARGET("fps.desired", "60"),
     FPS_MAX("fps.max", "80"),
     MAX_LIVES("max_lives", "3"),
-    MAX_LEVEL("max_level", "2"),
-    START_SPEED("start_speed", "3.3"),
-    MOD_SPEED("mod_speed", "0.2");
+    MAX_LEVEL("max_level", "4"),
+    INVINCIBILITY("invincibility", "false"),
+    BALL_START_SPEED("ball.start_speed", "3.3"),
+    BALL_MOD_SPEED("ball.mod_speed", "0.2");
 
     private final String value;
 
@@ -63,14 +64,18 @@ public enum Conf {
                 fps.desired=60
                 fps.max=80
                 
+                # min of 1, max of 10
                 max_lives=3
-                max_level=3
+                # min of 1, max of 6
+                max_level=4
+                # cheat option to disable loss of lives
+                invincibility=false
                 
                 # the ball's vertical speed is always at least 3 and at most 6
                 # ball initial speed
-                start_speed=3.3
-                # ball additional speed per level after the first, if not between 0 and 0.5, the default of 0.2 is used
-                mod_speed=0.2
+                ball.start_speed=3.3
+                # ball additional speed per level after the first, the value is squeezed between 0 and 0.5
+                ball.mod_speed=0.2
                 
                 """;
 

@@ -25,7 +25,6 @@ public final class Ball extends MovingGameObject {
     private static final double[] X_VEL = {-3, 3};
     private static final double SPEED_MIN = 3;
     private static final double SPEED_MAX = 6;
-    private static final double MOD_SPEED_DEFAULT = 0.2;
     private static final double MOD_SPEED_MIN = 0.0;
     private static final double MOD_SPEED_MAX = 0.5;
     private static final ObjectType[] OBSTACLES = {ObjectType.BRICK, ObjectType.PADDLE, ObjectType.FAKE_PADDLE};
@@ -34,12 +33,8 @@ public final class Ball extends MovingGameObject {
         super(x, y, WIDTH, HEIGHT, ObjectType.BALL);
         setVelX(X_VEL[RANDOM.nextInt(X_VEL.length)]);
 
-        double startSpeed = Math.abs(Conf.START_SPEED.dbl());
-
-        double modSpeed = MOD_SPEED_DEFAULT;
-        if (Conf.MOD_SPEED.dbl() >= MOD_SPEED_MIN && Conf.MOD_SPEED.dbl() <= MOD_SPEED_MAX) {
-            modSpeed = Conf.MOD_SPEED.dbl();
-        }
+        double startSpeed = Math.abs(Conf.BALL_START_SPEED.dbl());
+        double modSpeed = Utils.minMax(MOD_SPEED_MIN, Conf.BALL_MOD_SPEED.dbl(), MOD_SPEED_MAX);
 
         setVelY(-Utils.minMax(SPEED_MIN, startSpeed + modSpeed * (Game.level - 1), SPEED_MAX));
         if (Conf.LOG_BALL.bool()) LOG.info("Velocity at creation {},{}", velX, velY);
@@ -51,8 +46,8 @@ public final class Ball extends MovingGameObject {
 
         if (y >= GameConst.HEIGHT - height * 3) {
             if (Conf.LOG_PHYSICS.bool()) LOG.info("Ball fell");
-            if (!Game.hasWon()) Game.loseLife();
-            velY = -Math.abs(velY); // never reached in normal gameplay, used in debugging and after winning the game
+            if (!Conf.INVINCIBILITY.bool() && !Game.hasWon()) Game.loseLife();
+            velY = -Math.abs(velY); // reachable after winning the game or with invincibility on
         } else if (y <= HUD.HEIGHT) {
             if (Conf.LOG_PHYSICS.bool()) LOG.info("Top bounce");
             velY = Math.abs(velY);

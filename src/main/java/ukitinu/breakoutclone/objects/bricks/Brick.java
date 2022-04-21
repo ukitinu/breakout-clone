@@ -20,7 +20,8 @@ public interface Brick extends GameObject, HasScore {
      */
     @Override
     default void onHit() {
-        Spawner.INSTANCE.placeModifier(getX() + Brick.WIDTH / 2, getY() + Brick.HEIGHT / 2);
+        //TODO uncomment for falling bonuses/maluses
+        // Spawner.INSTANCE.placeModifier(getX() + Brick.WIDTH / 2, getY() + Brick.HEIGHT / 2);
         HUD.INSTANCE.updateScore(this);
         Room.INSTANCE.remove(this);
     }
