@@ -22,7 +22,8 @@ public enum Conf {
     FPS_MAX("fps.max", "80"),
     MAX_LIVES("max_lives", "3"),
     MAX_LEVEL("max_level", "2"),
-    START_SPEED("start_speed", "3.3");
+    START_SPEED("start_speed", "3.3"),
+    MOD_SPEED("mod_speed", "0.2");
 
     private final String value;
 
@@ -65,8 +66,11 @@ public enum Conf {
                 max_lives=3
                 max_level=3
                 
-                # float between 3 and 6, ball initial speed
+                # the ball's vertical speed is always at least 3 and at most 6
+                # ball initial speed
                 start_speed=3.3
+                # ball additional speed per level after the first, if not between 0 and 0.5, the default of 0.2 is used
+                mod_speed=0.2
                 
                 """;
 

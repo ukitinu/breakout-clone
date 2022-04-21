@@ -23,14 +23,25 @@ public final class Ball extends MovingGameObject {
     private static final int HEIGHT = 16;
     private static final RandomGenerator RANDOM = new Random();
     private static final double[] X_VEL = {-3, 3};
-    public static final double MIN_SPEED = 3;
-    private static final double MAX_SPEED = 6;
+    private static final double SPEED_MIN = 3;
+    private static final double SPEED_MAX = 6;
+    private static final double MOD_SPEED_DEFAULT = 0.2;
+    private static final double MOD_SPEED_MIN = 0.0;
+    private static final double MOD_SPEED_MAX = 0.5;
     private static final ObjectType[] OBSTACLES = {ObjectType.BRICK, ObjectType.PADDLE, ObjectType.FAKE_PADDLE};
 
     public Ball(int x, int y) {
         super(x, y, WIDTH, HEIGHT, ObjectType.BALL);
         setVelX(X_VEL[RANDOM.nextInt(X_VEL.length)]);
-        setVelY(-Utils.minMax(MIN_SPEED, Math.abs(Conf.START_SPEED.dbl()), MAX_SPEED));
+
+        double startSpeed = Math.abs(Conf.START_SPEED.dbl());
+
+        double modSpeed = MOD_SPEED_DEFAULT;
+        if (Conf.MOD_SPEED.dbl() >= MOD_SPEED_MIN && Conf.MOD_SPEED.dbl() <= MOD_SPEED_MAX) {
+            modSpeed = Conf.MOD_SPEED.dbl();
+        }
+
+        setVelY(-Utils.minMax(SPEED_MIN, startSpeed + modSpeed * (Game.level - 1), SPEED_MAX));
         if (Conf.LOG_BALL.bool()) LOG.info("Velocity at creation {},{}", velX, velY);
     }
 
@@ -66,8 +77,8 @@ public final class Ball extends MovingGameObject {
     }
 
     public void changeAbsoluteSpeedBy(double val) {
-        velY = velY > 0 ? Utils.minMax(MIN_SPEED, velY + val, MAX_SPEED) : Utils.minMax(-MAX_SPEED, velY - val, -MIN_SPEED);
-        velX = velX > 0 ? Utils.minMax(MIN_SPEED, velX + val, MAX_SPEED) : Utils.minMax(-MAX_SPEED, velX - val, -MIN_SPEED);
+        velY = velY > 0 ? Utils.minMax(SPEED_MIN, velY + val, SPEED_MAX) : Utils.minMax(-SPEED_MAX, velY - val, -SPEED_MIN);
+        velX = velX > 0 ? Utils.minMax(SPEED_MIN, velX + val, SPEED_MAX) : Utils.minMax(-SPEED_MAX, velX - val, -SPEED_MIN);
         if (Conf.LOG_BALL.bool()) LOG.info("Velocity after speed change: velX={}, velY={}", velX, velY);
     }
 
